@@ -1,6 +1,3 @@
-<?php 
-session_start()
-?>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -15,7 +12,7 @@ session_start()
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <!-- Navbar -->
-    <?php include('assets/navbar.php'); ?>
+    <?php include('assets/navbar2.php'); ?>
 
     <!-- Sign In Form -->
     <section class="text-center content-section masthead">
@@ -23,6 +20,13 @@ session_start()
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <h2>Sign In</h2>
+                    <?php
+                    session_start();
+                    if (isset($_SESSION['signin_error'])) {
+                        echo '<div class="alert alert-danger">' . $_SESSION['signin_error'] . '</div>';
+                        unset($_SESSION['signin_error']);
+                    }
+                    ?>
                     <form action="signin-handler.php" method="post">
                         <div class="form-group">
                             <input class="form-control" type="text" name="username" placeholder="Username" required>
@@ -36,7 +40,7 @@ session_start()
             </div>
         </div>
     </section>
-    
+
     <style>
         input {
             margin: 6px;

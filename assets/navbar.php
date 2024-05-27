@@ -11,6 +11,7 @@
                 <li class="nav-item"><a class="nav-link" href="#aim-training" id="navbar-btn">Aim Training</a></li>
                 <li class="nav-item"><a class="nav-link" href="#leaderboard">Leaderboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="#weapon-spec">Weapon Spec</a></li>
+                <li class="nav-item"><a class="nav-link" href="#roulette">Roulette</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

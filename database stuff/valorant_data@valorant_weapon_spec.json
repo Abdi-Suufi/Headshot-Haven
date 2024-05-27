@@ -1,0 +1,29 @@
+{
+    "options": {
+        "schema": "valorant_data",
+        "table": "valorant_weapon_spec",
+        "columns": [
+            "weapon",
+            "Price",
+            "Fire_Rate",
+            "Damage_Head",
+            "Damage_Body",
+            "Damage_Leg"
+        ],
+        "defaultCharacterSet": "utf8mb4",
+        "fieldsTerminatedBy": "\t",
+        "fieldsEnclosedBy": "",
+        "fieldsOptionallyEnclosed": false,
+        "fieldsEscapedBy": "\\",
+        "linesTerminatedBy": "\n"
+    },
+    "triggers": [],
+    "includesData": true,
+    "includesDdl": true,
+    "extension": "tsv.zst",
+    "chunking": true,
+    "compression": "zstd",
+    "primaryIndex": [],
+    "partitions": [],
+    "basenames": {}
+}

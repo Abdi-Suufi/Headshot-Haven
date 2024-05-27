@@ -5,7 +5,7 @@ session_start();
 <html data-bs-theme="light" lang="en">
 
 <head>
-    <link rel="shortcut icon" type="image" href="assets/img/Fix-Ur.svg">
+    <link rel="shortcut icon" type="image" href="assets/img/Fix Ur.svg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Valorant Site</title>
@@ -28,7 +28,7 @@ session_start();
                         <a class="navbar-brand" href="index.php">
                             <img src="assets/img/valorant site.svg" width="700" height="auto" style="max-width: 100%;">
                         </a><br>
-                        <a class="btn btn-link btn-circle" style="color: orange;" role="button" href="#aim-training"><span style="color: orange;"><i class="fa-solid fa-angle-down"></i></span></a>
+                        <a class="btn btn-link btn-circle" style="color: rgb(255, 100, 66);" role="button" href="#aim-training"><span style="color: orange;"><i class="fa-solid fa-angle-down"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -101,8 +101,8 @@ session_start();
     </section>
 
     <!-- Roulette wheel section -->
-    <section class="text-center content-section masthead" style="background-image:url('assets/img/controller2.jpg')">
-        <h2>time to sell</h2>
+    <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/controller2.jpg')">
+        <h2>time to sell? &#129315;</h2>
         <div class="container">
             <canvas id="canvas" width="500" height="500"></canvas><br>
             <input type="button" value="spin" class="btn btn-warning" id='spin' />

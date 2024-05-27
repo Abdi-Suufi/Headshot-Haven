@@ -68,7 +68,11 @@ td {
 }
 .panel-footer.panel-custom {
   background: red;
-  color: white;
+  color: rgb(0, 0, 0);
+}
+
+footer {
+  color: rgb(0, 0, 0);
 }
 
 /* navbar text color */
@@ -81,8 +85,9 @@ td {
 }
 
 canvas {
-  border: 2px red solid;
+  border: 2px rgb(255, 100, 66) solid;
   background-color: rgb(154, 94, 216);
+  border-radius: 10px;
 }
 #spin {
   border-radius:10px;

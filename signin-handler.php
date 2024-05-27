@@ -23,17 +23,21 @@ if ($stmt->num_rows > 0) {
         // Start session and store user data
         $_SESSION['user_id'] = $id;
         $_SESSION['username'] = $username;
-        
+
         // Redirect to index.php
         header("Location: index.php");
         exit;
     } else {
         // Invalid password
-        echo "Invalid username or password.";
+        $_SESSION['signin_error'] = "Invalid username or password.";
+        header("Location: signin.php");
+        exit;
     }
 } else {
     // Invalid username
-    echo "Invalid username or password.";
+    $_SESSION['signin_error'] = "Invalid username or password.";
+    header("Location: signin.php");
+    exit;
 }
 
 $stmt->close();

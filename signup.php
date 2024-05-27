@@ -12,7 +12,7 @@
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <!-- Navbar -->
-    <?php include('assets/navbar.php'); ?>
+    <?php include('assets/navbar2.php'); ?>
 
     <!-- Sign Up Form -->
     <section class="text-center content-section masthead">

@@ -1,0 +1,18 @@
+{
+    "schema": "valorant_data",
+    "includesDdl": true,
+    "includesViewsDdl": true,
+    "includesData": true,
+    "tables": [
+        "valorant_weapon_spec",
+        "users"
+    ],
+    "views": [],
+    "events": [],
+    "functions": [],
+    "procedures": [],
+    "basenames": {
+        "valorant_weapon_spec": "valorant_data@valorant_weapon_spec",
+        "users": "valorant_data@users"
+    }
+}

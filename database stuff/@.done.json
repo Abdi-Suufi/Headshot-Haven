@@ -1,0 +1,15 @@
+{
+    "end": "2024-05-27 10:05:05",
+    "dataBytes": 997,
+    "tableDataBytes": {
+        "valorant_data": {
+            "valorant_weapon_spec": 432,
+            "users": 565
+        }
+    },
+    "chunkFileBytes": {
+        "valorant_data@users@@0.tsv.zst": 565,
+        "valorant_data@valorant_weapon_spec@0.tsv.zst": 432,
+        "valorant_data@valorant_weapon_spec@@1.tsv.zst": 0
+    }
+}
