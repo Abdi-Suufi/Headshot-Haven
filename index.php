@@ -43,7 +43,7 @@ session_start();
                     <h2>Score: <span id="score">0</span></h2>
                     <canvas id="gameCanvas" width="1000" height="500"></canvas><br>
                     <div class="d-flex justify-content-center">
-                            <button id="resetButton" class="btn btn-warning">Reset</button>
+                        <button id="resetButton" class="btn btn-warning">Reset</button>
                     </div>
                 </div>
             </div>
@@ -99,10 +99,15 @@ session_start();
             </div>
         </div>
     </section>
-    
+
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" style="background-image:url('assets/img/controller2.jpg')">
-        <?php include('assets/roulette/index.php');?>
+        <h2>time to sell</h2>
+        <div class="container">
+            <canvas id="canvas" width="500" height="500"></canvas><br>
+            <input type="button" value="spin" class="btn btn-warning" id='spin' />
+        </div>
+        <script src="roulette.js"></script>
     </section>
 
 

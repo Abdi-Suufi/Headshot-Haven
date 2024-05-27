@@ -80,3 +80,10 @@ td {
   background-color: rgb(146, 82, 204);
 }
 
+canvas {
+  border: 2px red solid;
+  background-color: rgb(154, 94, 216);
+}
+#spin {
+  border-radius:10px;
+}
