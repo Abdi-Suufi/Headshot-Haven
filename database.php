@@ -2,7 +2,7 @@
 // Database connection parameters
 $host = 'localhost';
 $username = 'root';
-$password = 'Barton-324';
+$password = '';
 $database = 'valorant_data';
 
 // Create connection
