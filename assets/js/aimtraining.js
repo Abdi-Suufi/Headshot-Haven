@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     
     function sendScoreToServer(score) {
+        const data = new FormData();
+        data.append('score', score);  // Use FormData to construct the data
+    
         fetch('update_score.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ score: score })
+            body: data  // Send the FormData object directly
         })
         .then(response => {
             return response.json().then(data => ({ data, response }));

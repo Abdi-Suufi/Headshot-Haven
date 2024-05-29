@@ -1,28 +1,30 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  .column {
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-  }
-  
-  /* Clearfix (clear floats) */
-  .row::after {
-    clear: both;
-    display: table;
-  }
-
-  
-
-  table {
-    max-width: 100%;
+  box-sizing: border-box;
 }
 
-th, td {
-    width: auto;
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
 }
+
+/* Clearfix (clear floats) */
+.row::after {
+  clear: both;
+  display: table;
+}
+
+
+
+table {
+  max-width: 100%;
+}
+
+th,
+td {
+  width: auto;
+}
+
 td {
   word-wrap: break-word;
   max-width: 100px;
@@ -30,9 +32,10 @@ td {
 
 @media (max-width: 767px) {
   .hide-on-mobile {
-      display: none;
+    display: none;
   }
 }
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -54,18 +57,23 @@ td {
 }
 
 #resetButton {
-  margin: 0 auto; /* Centers the button horizontally */
-  display: block; /* Ensures the button is displayed as a block element */
+  margin: 0 auto;
+  /* Centers the button horizontally */
+  display: block;
+  /* Ensures the button is displayed as a block element */
 }
 
 .navbar.fixed-top.scrolled {
   background-color: orange;
 }
+
 /* Example additional styles for the dropdown menu */
 .navbar .dropdown-menu {
-  right: 0; /* Align the dropdown to the right */
+  right: 0;
+  /* Align the dropdown to the right */
   left: auto;
 }
+
 .panel-footer.panel-custom {
   background: red;
   color: rgb(0, 0, 0);
@@ -88,7 +96,70 @@ canvas {
   border: 2px rgb(255, 100, 66) solid;
   background-color: rgb(154, 94, 216);
   border-radius: 10px;
+  display: block;
+  margin: 0 auto;
 }
+
 #spin {
-  border-radius:10px;
+  border-radius: 10px;
+}
+
+/* General styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header.masthead {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.masthead .intro-body {
+  text-align: center;
+}
+
+.content-section {
+  padding: 100px 0;
+  color: white;
+}
+
+#aim-training canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile specific styling */
+@media (max-width: 768px) {
+  #aim-training {
+      height: auto;
+      padding: 50px 0;
+  }
+
+  #aim-training canvas {
+      width: 100%;
+      height: auto;
+  }
+
+  #aim-training .container {
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+
+  .masthead {
+      padding: 100px 0;
+  }
+
+  .masthead h2 {
+      font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjust font size for smaller screens */
+  #weapon-spec table {
+    font-size: 12px; /* Adjust this value as needed */
+  }
 }

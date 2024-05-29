@@ -14,72 +14,71 @@ document.getElementById("spin").addEventListener("click", spin);
 
 function byte2Hex(n) {
   var nybHexString = "0123456789ABCDEF";
-  return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+  return String(nybHexString.substr((n >> 4) & 0x0F, 1)) + nybHexString.substr(n & 0x0F, 1);
 }
 
-function RGB2Color(r,g,b) {
-	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+function RGB2Color(r, g, b) {
+  return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
 }
 
 function getColor(item) {
-    // Define colors for orange and purple
-    var orange = "rgb(255, 100, 66)"; // You can replace this with any other shade of orange
-    var purple = "rgb(154, 94, 216)"; // You can replace this with any other shade of purple
-  
-    // Assign orange to even-indexed options and purple to odd-indexed options
-    return item % 2 === 0 ? orange : purple;
-  }
+  // Define colors for orange and purple
+  var orange = "rgb(255, 100, 66)"; // You can replace this with any other shade of orange
+  var purple = "rgb(154, 94, 216)"; // You can replace this with any other shade of purple
+
+  // Assign orange to even-indexed options and purple to odd-indexed options
+  return item % 2 === 0 ? orange : purple;
+}
 
 function drawRouletteWheel() {
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
-    var outsideRadius = 200;
-    var textRadius = 160;
-    var insideRadius = 125;
+    var outsideRadius = 140; // updated from 200
+    var textRadius = 110; // updated from 160
+    var insideRadius = 85; // updated from 125
 
     ctx = canvas.getContext("2d");
-    ctx.clearRect(0,0,500,500);
+    ctx.clearRect(0, 0, 380, 380); // updated from 500, 500
 
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
 
-    ctx.font = 'bold 12px Helvetica, Arial';
+    ctx.font = 'bold 8px Helvetica, Arial';
 
-    for(var i = 0; i < options.length; i++) {
+    for (var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
-      //ctx.fillStyle = colors[i];
-      ctx.fillStyle = getColor(i, options.length);
+      ctx.fillStyle = getColor(i);
 
       ctx.beginPath();
-      ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
-      ctx.arc(250, 250, insideRadius, angle + arc, angle, true);
+      ctx.arc(190, 190, outsideRadius, angle, angle + arc, false); // updated from 250, 250
+      ctx.arc(190, 190, insideRadius, angle + arc, angle, true); // updated from 250, 250
       ctx.stroke();
       ctx.fill();
 
       ctx.save();
       ctx.shadowOffsetX = -1;
       ctx.shadowOffsetY = -1;
-      ctx.shadowBlur    = 0;
+      ctx.shadowBlur = 0;
       ctx.fillStyle = "black";
-      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
-                    250 + Math.sin(angle + arc / 2) * textRadius);
+      ctx.translate(190 + Math.cos(angle + arc / 2) * textRadius,
+        190 + Math.sin(angle + arc / 2) * textRadius); // updated from 250, 250
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
       ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
       ctx.restore();
-    } 
+    }
 
-    //Arrow
+    // Arrow
     ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 0, 250 - (outsideRadius - 13));
-    ctx.lineTo(250 - 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
+    ctx.moveTo(190 - 4, 190 - (outsideRadius + 5)); // updated from 250
+    ctx.lineTo(190 + 4, 190 - (outsideRadius + 5)); // updated from 250
+    ctx.lineTo(190 + 4, 190 - (outsideRadius - 5)); // updated from 250
+    ctx.lineTo(190 + 9, 190 - (outsideRadius - 5)); // updated from 250
+    ctx.lineTo(190 + 0, 190 - (outsideRadius - 13)); // updated from 250
+    ctx.lineTo(190 - 9, 190 - (outsideRadius - 5)); // updated from 250
+    ctx.lineTo(190 - 4, 190 - (outsideRadius - 5)); // updated from 250
+    ctx.lineTo(190 - 4, 190 - (outsideRadius + 5)); // updated from 250
     ctx.fill();
   }
 }
@@ -93,14 +92,14 @@ function spin() {
 
 function rotateWheel() {
   spinTime += 30;
-  if(spinTime >= spinTimeTotal) {
+  if (spinTime >= spinTimeTotal) {
     stopRotateWheel();
     return;
   }
   var spinAngle = spinAngleStart - easeOut(spinTime, 0, spinAngleStart, spinTimeTotal);
   startAngle += (spinAngle * Math.PI / 180);
   drawRouletteWheel();
-  spinTimeout = setTimeout('rotateWheel()', 30);
+  spinTimeout = setTimeout(rotateWheel, 30);
 }
 
 function stopRotateWheel() {
@@ -110,15 +109,15 @@ function stopRotateWheel() {
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
-  var text = options[index]
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
+  var text = options[index];
+  ctx.fillText(text, 190 - ctx.measureText(text).width / 2, 190 + 10); // updated from 250
   ctx.restore();
 }
 
 function easeOut(t, b, c, d) {
-  var ts = (t/=d)*t;
-  var tc = ts*t;
-  return b+c*(tc + -3*ts + 3*t);
+  var ts = (t /= d) * t;
+  var tc = ts * t;
+  return b + c * (tc + -3 * ts + 3 * t);
 }
 
 drawRouletteWheel();

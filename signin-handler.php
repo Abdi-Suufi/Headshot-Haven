@@ -40,6 +40,9 @@ if ($stmt->num_rows > 0) {
     exit;
 }
 
+// Output session ID for debugging
+echo "Session ID: " . session_id() . "<br>";
+
 $stmt->close();
 $conn->close();
 ?>

@@ -11,8 +11,10 @@ if (!isset($_SESSION['user_id'])) {
 // Include database connection
 include('database.php');
 
-// Retrieve user's score from the database
+// Retrieve parameters
 $user_id = $_SESSION['user_id'];
+
+// Prepare and execute the SQL query to retrieve the score
 $query = "SELECT score FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $user_id);
@@ -22,7 +24,12 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     // User found, return the score
     $row = $result->fetch_assoc();
-    echo json_encode(array('success' => true, 'score' => $row['score']));
+    $score = $row['score'];
+    if ($score === null) {
+        // Handle null score here (e.g., set a default score)
+        $score = 0; // Default score
+    }
+    echo json_encode(array('success' => true, 'score' => $score));
 } else {
     // User not found, return an error response
     echo json_encode(array('success' => false, 'message' => 'User not found'));
