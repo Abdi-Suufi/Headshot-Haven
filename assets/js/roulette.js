@@ -22,23 +22,21 @@ function RGB2Color(r, g, b) {
 }
 
 function getColor(item) {
-  // Define colors for orange and purple
-  var orange = "rgb(255, 100, 66)"; // You can replace this with any other shade of orange
-  var purple = "rgb(154, 94, 216)"; // You can replace this with any other shade of purple
-
-  // Assign orange to even-indexed options and purple to odd-indexed options
+  var orange = "rgb(255, 100, 66)";
+  var purple = "rgb(154, 94, 216)";
+  
   return item % 2 === 0 ? orange : purple;
 }
 
 function drawRouletteWheel() {
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
-    var outsideRadius = 140; // updated from 200
-    var textRadius = 110; // updated from 160
-    var insideRadius = 85; // updated from 125
+    var outsideRadius = 140;
+    var textRadius = 110;
+    var insideRadius = 85;
 
     ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 380, 380); // updated from 500, 500
+    ctx.clearRect(0, 0, 380, 380);
 
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;

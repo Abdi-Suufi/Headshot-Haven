@@ -38,10 +38,11 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
+                    <h2>Personal Best: <span id="personalBest">0</span></h2>
                     <h2>Score: <span id="score">0</span></h2>
                     <canvas id="gameCanvas" width="1000" height="500"></canvas><br>
                     <div class="d-flex justify-content-center">
-                        <button id="resetButton" class="btn btn-warning">Reset</button>
+                        <button id="startButton" class="btn btn-warning">Start Game</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +51,7 @@ session_start();
 
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
         <div class="container">
-            <h2>Leaderboard</h2>
+            <h2>Leaderboard table</h2>
             <table class="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -118,12 +119,12 @@ session_start();
 
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/controller2.jpg')">
-        <h2>time to sell? &#129315;</h2>
+        <h2>Switch it up &#128526;</h2>
         <div class="container">
             <canvas id="canvas" width="380" height="380"></canvas><br>
             <input type="button" value="spin" class="btn btn-warning" id='spin' />
         </div>
-        <script src="roulette.js"></script>
+        <script src="assets/js/roulette.js"></script>
     </section>
 
     <?php include('assets/footer.php'); ?>

@@ -56,7 +56,7 @@ td {
   background-color: rgb(154, 94, 216);
 }
 
-#resetButton {
+#resetButton, #startButton {
   margin: 0 auto;
   /* Centers the button horizontally */
   display: block;

@@ -1,32 +1,52 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Initialize canvas and context
     const canvas = document.getElementById('gameCanvas');
-    if (!canvas) {
-        console.error('Canvas element not found');
-        return;
-    }
-
     const ctx = canvas.getContext('2d');
-    if (!ctx) {
-        console.error('2D context not available');
-        return;
+
+    let balls = [];
+    const ballRadius = 30;
+    let score = 0;
+    let startTime;
+    const gameDuration = 5 * 1000;
+
+    let personalBest = 0;
+    let isGameStarted = false;
+    let countdown = 3;
+    const startButton = document.getElementById('startButton');
+    const scoreDisplay = document.getElementById('score');
+    const personalBestDisplay = document.getElementById('personalBest');
+
+    // Define grid points
+    const gridSize = 100; // Adjust the grid size as needed
+    let gridPoints = [];
+
+    function createGridPoints() {
+        gridPoints = [];
+        const cols = Math.floor(canvas.width / gridSize);
+        const rows = Math.floor(canvas.height / gridSize);
+
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                const x = i * gridSize + gridSize / 2;
+                const y = j * gridSize + gridSize / 2;
+                gridPoints.push({ x, y });
+            }
+        }
     }
 
-    // Ball objects array
-    let balls = [];
-    const ballRadius = 20;
-    let score = 0;
-    let startTime; // Variable to store the start time
-    const gameDuration = 5 * 1000; // 5 seconds in milliseconds
-
-    // Create initial balls with random positions
+    // Function to create initial balls with random positions
     function createBalls() {
+        balls = []; // Reset the balls array
+        const availablePoints = [...gridPoints]; // Make a copy of the grid points
+
         for (let i = 0; i < 3; i++) {
-            balls.push({ 
-                x: Math.random() * (canvas.width - ballRadius * 2) + ballRadius,
-                y: Math.random() * (canvas.height - ballRadius * 2) + ballRadius,
+            if (availablePoints.length === 0) break; // No more points available
+            const randomIndex = Math.floor(Math.random() * availablePoints.length);
+            const { x, y } = availablePoints.splice(randomIndex, 1)[0]; // Remove selected point
+            balls.push({
+                x,
+                y,
                 radius: ballRadius,
-                color: 'rgb(255, 100, 66)' 
+                color: 'rgb(255, 100, 66)'
             });
         }
     }
@@ -54,11 +74,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Handle mousedown event to check if a ball is clicked
-    canvas.addEventListener('mousedown', function(event) {
+    canvas.addEventListener('mousedown', function (event) {
         const rect = canvas.getBoundingClientRect();
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
-        
+
         balls.forEach((ball, index) => {
             if (isInsideBall(ball, mouseX, mouseY)) {
                 resetBall(ball);
@@ -69,14 +89,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Function to reset a ball's position
     function resetBall(ball) {
-        // Move the shot ball off-screen
         ball.x = -100;
         ball.y = -100;
-        
-        // Spawn a new ball in a random position
+
+        const availablePoints = [...gridPoints]; // Make a copy of the grid points
+        const randomIndex = Math.floor(Math.random() * availablePoints.length);
+        const { x, y } = availablePoints.splice(randomIndex, 1)[0]; // Remove selected point
+
         const newBall = {
-            x: Math.random() * (canvas.width - ballRadius * 2) + ballRadius,
-            y: Math.random() * (canvas.height - ballRadius * 2) + ballRadius,
+            x,
+            y,
             radius: ballRadius,
             color: 'rgb(255, 100, 66)'
         };
@@ -93,62 +115,97 @@ document.addEventListener('DOMContentLoaded', (event) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
+    // Function to start the countdown
+    function startCountdown() {
+        countdown = 3;
+        startButton.disabled = true;
+
+        const countdownInterval = setInterval(() => {
+            clearCanvas();
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "white";
+            ctx.fillText(countdown, canvas.width / 2 - 10, canvas.height / 2);
+            countdown--;
+
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                isGameStarted = true;
+                createBalls(); // Create balls after countdown
+                requestAnimationFrame(gameLoop);
+            }
+        }, 1000);
+    }
+
     // Main game loop
     function gameLoop(timestamp) {
-        if (!startTime) startTime = timestamp; // Set the start time if it's not set
-        
-        if (timestamp - startTime < gameDuration) {
-            clearCanvas();
-            drawBalls();
-            requestAnimationFrame(gameLoop);
+        if (isGameStarted) {
+            if (!startTime) startTime = timestamp;
+            if (timestamp - startTime < gameDuration) {
+                clearCanvas();
+                drawBalls();
+                requestAnimationFrame(gameLoop);
+            } else {
+                console.log('Game over! Your score: ' + score);
+                scoreDisplay.textContent = score;
+                sendScoreToServer(score);
+                startButton.disabled = false;
+                isGameStarted = false;
+            }
         } else {
-            // Game over, stop the game
-            console.log('Game over! Your score: ' + score);
-            document.getElementById('score').textContent = score;
-            gameOver(score);
+            requestAnimationFrame(gameLoop);
         }
     }
-    
+
+    // Fetch and display the personal best from the server
+    function getAndDisplayPersonalBest() {
+        fetch('get_score.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    personalBest = data.personalBest;
+                    personalBestDisplay.textContent = personalBest;
+                } else {
+                    console.error('Failed to get personal best:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching personal best:', error);
+            });
+    }
+
     function sendScoreToServer(score) {
         const data = new FormData();
-        data.append('score', score);  // Use FormData to construct the data
-    
+        data.append('score', score);
+
         fetch('update_score.php', {
             method: 'POST',
-            body: data  // Send the FormData object directly
+            body: data
         })
-        .then(response => {
-            return response.json().then(data => ({ data, response }));
-        })
-        .then(({ data, response }) => {
-            if (response.ok) {
-                console.log('Score updated successfully');
-            } else {
-                console.error('Failed to update score:', data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Score updated successfully');
+                    getAndDisplayPersonalBest();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
-    
-    // Call this function when the game ends and you have the final score
-    function gameOver(finalScore) {
-        // Send score to the server
-        sendScoreToServer(finalScore);
+
+    function resetGameState() {
+        score = 0;
+        balls = [];
+        startTime = null;
+        isGameStarted = false;
+        scoreDisplay.textContent = score;
     }
-    
 
-    // Start the game
-    createBalls();
-    requestAnimationFrame(gameLoop);
-
-    // Reset button click event handler
-    document.getElementById('resetButton').addEventListener('click', function() {
-        score = 0; // Reset the score
-        startTime = null; // Reset the start time
-        balls = []; // Clear the balls array
-        createBalls(); // Create new balls
-        requestAnimationFrame(gameLoop); // Start the game loop again
+    startButton.addEventListener('click', () => {
+        resetGameState();
+        startCountdown();
     });
+
+    createGridPoints(); // Initialize grid points on page load
+    getAndDisplayPersonalBest();
 });
