@@ -9,9 +9,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item nav-link"><a class="nav-link" href="index.php">Home</a></li>
-                <li class="nav-item nav-link"><a class="nav-link" href="signin.php">SignIn</a></li>
-                <li class="nav-item nav-link"><a class="nav-link" href="signup.php">SignUp</a></li>
+                <li class="nav-item nav-link"><a class="nav-link" href="index.php">SignOut</a></li>
             </ul>
         </div>
     </div>
