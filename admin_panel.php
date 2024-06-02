@@ -14,10 +14,11 @@ if (!isset($_SESSION['admin_id'])) {
 <html data-bs-theme="light" lang="en">
 
 <head>
+<link rel="shortcut icon" type="image" href="assets/img/headshot-haven-logo.svg">
     <link rel="shortcut icon" type="image" href="assets/img/fix ur.svg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sign In</title>
+    <title>Admin panel</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -52,7 +53,7 @@ if (!isset($_SESSION['admin_id'])) {
                             echo "<td>" . $row["score"] . "</td>";
                             echo "<td>";
                             echo "<a href='delete_user.php?user_id=" . $row["id"] . "' class='btn btn-danger btn-sm me-2'>Delete</a>";
-                            echo "<a href='reset_score.php?user_id=" . $row["id"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset</a>";
+                            echo "<a href='reset_score.php?user_id=" . $row["id"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset score</a>";
                             echo "</td>";
                             echo "</tr>";
                         }

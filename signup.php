@@ -29,12 +29,15 @@
                     ?>
                     <form action="signup-handler.php" method="post">
                         <div class="form-group">
+                            <label for="username">Username</label>
                             <input class="form-control" type="text" name="username" placeholder="Username" required>
                         </div>
                         <div class="form-group">
+                            <label for="email">Email</label>
                             <input class="form-control" type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
+                            <label for="password">Password</label>
                             <input class="form-control" type="password" name="password" placeholder="Password" required>
                         </div>
                         <button type="submit" class="btn btn-dark">Sign Up</button>

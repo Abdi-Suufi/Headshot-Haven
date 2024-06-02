@@ -27,7 +27,7 @@ session_start();
                         <a class="navbar-brand" href="index.php">
                             <img src="assets/img/headshot-haven.svg" width="700" height="auto" style="max-width: 100%; margin-bottom: 50px;">
                         </a><br>
-                        <a class="btn btn-link btn-circle" style="color: rgb(255, 100, 66);" role="button" href="#aim-training"><span style="color: orange;"><i class="fa-solid fa-angle-down"></i></span></a>
+                        <a class="custom-btn" href="#aim-training"><span>Start</span></a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ session_start();
                     <h2>Score: <span id="score">0</span></h2>
                     <canvas id="gameCanvas" width="1000" height="500"></canvas><br>
                     <div class="d-flex justify-content-center">
-                        <button id="startButton" class="btn btn-warning">Start Game</button>
+                        <button id="startButton" class="custom-btn">Start Game</button>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ session_start();
 
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
         <div class="container">
-            <h2>Leaderboard table</h2>
+            <h2>Aiming Leaderboard</h2>
             <table class="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -65,6 +65,45 @@ session_start();
             </table>
         </div>
     </section>
+
+    <!-- Section to display table -->
+    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-image:url('assets/img/controller3.jpg');">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="center-text">Weapon Specs</h2>
+                <!-- Table for displaying data -->
+                <div class="table-responsive">
+                    <?php include('get_weapon_spec.php'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roulette wheel section -->
+    <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/controller2.jpg')">
+        <h2>Switch it up &#128526;</h2>
+        <div class="container">
+            <canvas id="canvas" width="380" height="380"></canvas><br>
+            <a type="button" value="spin" class="custom-btn" id='spin'>Spin</a>
+        </div>
+        <script src="assets/js/roulette.js"></script>
+    </section>
+
+    <section id="cps" class="text-center content-section masthead" style="background-image:url('assets/img/controller4.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="map-clean text-center">
+                    <h2>Clicks Per Second: <span id="cpsCount">0</span></h2>
+                    <h2>Final CPS: <span id="finalCPS">0</span></h2>
+                    <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
+                    <div class="d-flex justify-content-center">
+                        <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('get_leaderboard.php')
@@ -104,29 +143,7 @@ session_start();
         });
     </script>
 
-    <!-- Section to display table -->
-    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-image:url('assets/img/controller3.jpg');">
-        <div class="container">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="center-text">Weapon Specs</h2>
-                <!-- Table for displaying data -->
-                <div class="table-responsive">
-                    <?php include('get_weapon_spec.php'); ?>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roulette wheel section -->
-    <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/controller2.jpg')">
-        <h2>Switch it up &#128526;</h2>
-        <div class="container">
-            <canvas id="canvas" width="380" height="380"></canvas><br>
-            <input type="button" value="spin" class="btn btn-warning" id='spin' />
-        </div>
-        <script src="assets/js/roulette.js"></script>
-    </section>
-
+    <script src="assets/js/cps.js"></script>
     <?php include('assets/footer.php'); ?>
 
     <!--Bugs out if its in the head tag idk why-->

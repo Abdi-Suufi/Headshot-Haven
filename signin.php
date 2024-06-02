@@ -38,9 +38,9 @@
                         </div>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin" value="1">
-                            <label class="form-check-label" for="is_admin">Admin Login</label>
+                            <label class="form-check-label" for="is_admin" style="float: left;">Admin Login</label>
+                            <button type="submit" class="btn btn-dark">Sign In</button>
                         </div>
-                        <button type="submit" class="btn btn-dark">Sign In</button>
                     </form>
                 </div>
             </div>

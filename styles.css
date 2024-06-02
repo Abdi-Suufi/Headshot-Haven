@@ -50,13 +50,14 @@ td {
 }
 
 #gameCanvas {
-  border: 4px solid rgb(255, 174, 0);
-  box-shadow: 2px 2px 6px orange;
+  border: 4px solid rgb(255, 100, 66);
+  box-shadow: 2px 2px 6px rgb(201, 75, 47);
   border-radius: 6px;
   background-color: rgb(154, 94, 216);
 }
 
-#resetButton, #startButton {
+#resetButton,
+#startButton {
   margin: 0 auto;
   /* Centers the button horizontally */
   display: block;
@@ -72,11 +73,6 @@ td {
   right: 0;
   /* Align the dropdown to the right */
   left: auto;
-}
-
-.panel-footer.panel-custom {
-  background: red;
-  color: rgb(0, 0, 0);
 }
 
 footer {
@@ -98,10 +94,6 @@ canvas {
   border-radius: 10px;
   display: block;
   margin: 0 auto;
-}
-
-#spin {
-  border-radius: 10px;
 }
 
 /* General styling */
@@ -131,35 +123,112 @@ header.masthead {
   height: auto;
 }
 
+#aim-training canvas:hover {
+  cursor: crosshair;
+  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy533cub3JnLzIwMDAvc3ZnIiB4PSIwcHgiIHkPSIwcHgiIHdpZHRoPSIyMCIgaGVpZHRhPSIyMCI+PHBhdGggZmlsbD0iIWE0MCIgZD0iTExLDAgMTAsMTAgOSwyMSA4LDIyIDcsMjkgNiwzMSA1LDMyIDQsMzMgMywzNCAyLDM1IDEtMzYgMCwzNyAwLDM4MSAwLDM5MiAxLDQwMyAyLDQxNCAzLDQxNSA0LDQxNiA1LDQxNyA2LDQxOCA3LDQxOSw4LDQyMCA5LDQyMSwxMCwyMjExLDExLDIxMiAxMiwyMTMgMTMsMjE0LDE0LDIxNSwxNSwyMTYgMTYsMjE3IDE3LDIxOCAxOCwyMTkgMTksMjIwIDI0LDIxOSAyNSwyMTggMjYsMjE3IDI3LDIxNiAyOCwyMTUgMjksMjE0IDMwLDIxMyAzMSwyMTI والثاني،#FF0000') 10 10, auto;
+}
+
 /* Mobile specific styling */
 @media (max-width: 768px) {
-  #aim-training {
-      height: auto;
-      padding: 50px 0;
+
+  #aim-training,
+  #cps {
+    height: auto;
+    padding: 50px 0;
   }
 
-  #aim-training canvas {
-      width: 100%;
-      height: auto;
+  #aim-training canvas,
+  #cps canvas {
+    width: 100%;
+    height: auto;
+
+  }
+
+  #cpsCanvas {
+    border: 4px solid rgb(255, 100, 66);
+    box-shadow: 2px 2px 6px rgb(201, 75, 47);
+    border-radius: 6px;
+    background-color: rgb(154, 94, 216);
   }
 
   #aim-training .container {
-      padding-left: 15px;
-      padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .masthead {
-      padding: 100px 0;
+    padding: 100px 0;
   }
 
   .masthead h2 {
-      font-size: 24px;
+    font-size: 24px;
   }
 }
 
 @media screen and (max-width: 768px) {
+
   /* Adjust font size for smaller screens */
   #weapon-spec table {
-    font-size: 12px; /* Adjust this value as needed */
+    font-size: 12px;
+    /* Adjust this value as needed */
   }
+}
+
+.custom-btn {
+  --color1: rgb(255, 100, 66);
+  --color2: rgb(255, 100, 66);
+  perspective: 1000px;
+  padding: 1em 1em;
+  background: linear-gradient(var(--color1), var(--color2));
+  border: none;
+  outline: none;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #fff;
+  text-shadow: 0 10px 10px #000;
+  cursor: pointer;
+  transform: rotateX(70deg) rotateZ(30deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s, box-shadow 0.5s;
+  /* Added transition for box-shadow */
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Cabin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* made it same font as the one on bootstrap :) */
+}
+
+.custom-btn::before {
+  content: "";
+  width: 100%;
+  height: 15px;
+  background-color: var(--color2);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: rotateX(90deg);
+  transform-origin: bottom;
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
+  /* Initial shadow */
+}
+
+.custom-btn::after {
+  content: "";
+  width: 15px;
+  height: 100%;
+  background-color: var(--color1);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotateY(-90deg);
+  transform-origin: right;
+  box-shadow: none;
+}
+
+.custom-btn:hover {
+  transform: rotateX(30deg) rotateZ(0);
+  color: rgb(101, 39, 26);
+  box-shadow: none;
+  /* Remove shadow on hover */
 }
