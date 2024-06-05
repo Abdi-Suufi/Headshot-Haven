@@ -105,19 +105,23 @@ session_start();
     </section>
 
     <section id="cps" class="text-center content-section masthead" style="background-image:url('assets/img/controller4.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="map-clean text-center">
-                    <h2>Clicks Per Second: <span id="cpsCount">0</span></h2>
-                    <h2>Final CPS: <span id="finalCPS">0</span></h2>
-                    <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
-                    <div class="d-flex justify-content-center">
-                        <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="map-clean text-center">
+                <h2>Clicks Per Second: <span id="cpsCount">0</span></h2>
+                <h2>Final CPS: <span id="finalCPS">0</span></h2>
+                <h2>Time Left: <span id="cpsTimer">10.0</span> seconds</h2>
+                <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
+                <div class="d-flex justify-content-center">
+                    <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
+                    <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
+                    <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
