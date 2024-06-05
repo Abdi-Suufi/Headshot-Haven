@@ -8,7 +8,7 @@ session_start();
     <link rel="shortcut icon" type="image" href="assets/img/headshot-haven-logo.svg">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Valorant Site</title>
+    <title>Headshot Haven</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/56e72382bd.js" crossorigin="anonymous"></script>
     <script src="assets/js/aimtraining.js"></script>
@@ -35,19 +35,34 @@ session_start();
     </header>
 
     <section id="aim-training" class="text-center content-section masthead" style="background-image:url('assets/img/controller3.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="map-clean text-center">
-                    <h2>Personal Best: <span id="personalBest">0</span></h2>
-                    <h2>Score: <span id="score">0</span></h2>
-                    <canvas id="gameCanvas" width="1000" height="500"></canvas><br>
-                    <div class="d-flex justify-content-center">
-                        <button id="startButton" class="custom-btn">Start Game</button>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="map-clean text-center">
+                <h2>Personal Best: <span id="personalBest">0</span></h2>
+                <h2>Score:<span id="score"></span></h2>
+                <h2><span id="timer">30.0</span> seconds</h2>
+                <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
+                <div class="d-flex justify-content-center">
+                    <button id="startButton" class="custom-btn">Start Game</button>
+                    <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
+                    <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<script>
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch((err) => {
+                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
+</script>
 
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
         <div class="container">

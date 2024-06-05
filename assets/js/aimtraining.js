@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const ballRadius = 30;
     let score = 0;
     let startTime;
-    const gameDuration = 5 * 1000;
+    const gameDuration = 30 * 1000; // Change game duration to 30 seconds
 
     let personalBest = 0;
     let isGameStarted = false;
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const startButton = document.getElementById('startButton');
     const scoreDisplay = document.getElementById('score');
     const personalBestDisplay = document.getElementById('personalBest');
+    const timerDisplay = document.getElementById('timer'); // Add this line
 
     // Define grid points
     const gridSize = 100; // Adjust the grid size as needed
@@ -140,9 +141,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function gameLoop(timestamp) {
         if (isGameStarted) {
             if (!startTime) startTime = timestamp;
-            if (timestamp - startTime < gameDuration) {
-                clearCanvas();
-                drawBalls();
+            const elapsedTime = timestamp - startTime;
+            const timeLeft = Math.max((gameDuration - elapsedTime) / 1000, 0).toFixed(1); // Calculate time left
+
+            clearCanvas();
+            drawBalls();
+
+            // Update the timer display
+            timerDisplay.textContent = timeLeft;
+
+            if (elapsedTime < gameDuration) {
                 requestAnimationFrame(gameLoop);
             } else {
                 console.log('Game over! Your score: ' + score);
@@ -199,6 +207,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         startTime = null;
         isGameStarted = false;
         scoreDisplay.textContent = score;
+        timerDisplay.textContent = (gameDuration / 1000).toFixed(1); // Reset timer display
     }
 
     startButton.addEventListener('click', () => {
