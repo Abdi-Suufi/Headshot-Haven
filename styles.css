@@ -125,7 +125,6 @@ header.masthead {
 
 #aim-training canvas:hover {
   cursor: crosshair;
-  cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy533cub3JnLzIwMDAvc3ZnIiB4PSIwcHgiIHkPSIwcHgiIHdpZHRoPSIyMCIgaGVpZHRhPSIyMCI+PHBhdGggZmlsbD0iIWE0MCIgZD0iTExLDAgMTAsMTAgOSwyMSA4LDIyIDcsMjkgNiwzMSA1LDMyIDQsMzMgMywzNCAyLDM1IDEtMzYgMCwzNyAwLDM4MSAwLDM5MiAxLDQwMyAyLDQxNCAzLDQxNSA0LDQxNiA1LDQxNyA2LDQxOCA3LDQxOSw4LDQyMCA5LDQyMSwxMCwyMjExLDExLDIxMiAxMiwyMTMgMTMsMjE0LDE0LDIxNSwxNSwyMTYgMTYsMjE3IDE3LDIxOCAxOCwyMTkgMTksMjIwIDI0LDIxOSAyNSwyMTggMjYsMjE3IDI3LDIxNiAyOCwyMTUgMjksMjE0IDMwLDIxMyAzMSwyMTI والثاني،#FF0000') 10 10, auto;
 }
 
 /* Mobile specific styling */

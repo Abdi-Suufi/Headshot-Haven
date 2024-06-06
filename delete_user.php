@@ -12,34 +12,52 @@ if (!isset($_SESSION['admin_id'])) {
 // Check if username parameter is provided
 if (!isset($_GET['username'])) {
     // Redirect or show an error if username is missing
-    header("Location: admin_panel.php?error=missing_username"); 
+    header("Location: " . $_SERVER['HTTP_REFERER'] . "?error=missing_username"); 
     exit();
 }
 
 // Get the username to delete
 $usernameToDelete = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
 
-// Prepare and execute the delete query for aim_training_scores
-$deleteScoresQuery = "DELETE FROM aim_training_scores WHERE username = ?";
-$stmt = $conn->prepare($deleteScoresQuery);
-$stmt->bind_param("s", $usernameToDelete);
-$stmt->execute();
+try {
+    // Begin a transaction
+    $conn->begin_transaction();
 
-// Prepare and execute the delete query for users
-$deleteUserQuery = "DELETE FROM users WHERE username = ?";
-$stmt = $conn->prepare($deleteUserQuery);
-$stmt->bind_param("s", $usernameToDelete);
+    // Prepare and execute the delete query for cps_scores
+    $deleteCpsScoresQuery = "DELETE FROM cps_scores WHERE username = ?";
+    $stmt = $conn->prepare($deleteCpsScoresQuery);
+    $stmt->bind_param("s", $usernameToDelete);
+    $stmt->execute();
+    $stmt->close();
 
-if ($stmt->execute()) {
+    // Prepare and execute the delete query for aim_training_scores
+    $deleteAimTrainingScoresQuery = "DELETE FROM aim_training_scores WHERE username = ?";
+    $stmt = $conn->prepare($deleteAimTrainingScoresQuery);
+    $stmt->bind_param("s", $usernameToDelete);
+    $stmt->execute();
+    $stmt->close();
+
+    // Prepare and execute the delete query for users
+    $deleteUserQuery = "DELETE FROM users WHERE username = ?";
+    $stmt = $conn->prepare($deleteUserQuery);
+    $stmt->bind_param("s", $usernameToDelete);
+    $stmt->execute();
+    $stmt->close();
+
+    // Commit the transaction
+    $conn->commit();
+
     // User deleted successfully
-    header("Location: admin_panel.php?success=user_deleted"); 
+    header("Location: " . $_SERVER['HTTP_REFERER'] . "?success=user_deleted");
     exit();
-} else {
+} catch (Exception $e) {
+    // Rollback the transaction if an error occurred
+    $conn->rollback();
+
     // Error occurred while deleting the user
-    header("Location: admin_panel.php?error=delete_failed"); 
+    header("Location: " . $_SERVER['HTTP_REFERER'] . "?error=delete_failed");
     exit();
 }
 
-$stmt->close();
 $conn->close();
 ?>

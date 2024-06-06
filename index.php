@@ -123,7 +123,7 @@ session_start();
         </div>
     </section>
 
-    <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
+    <section class="text-center content-section masthead" id="cpsleaderboard" style="background-image:url('assets/img/controller5.jpg');">
         <div class="container">
             <h2>CPS Leaderboard</h2>
             <table class="table table-striped table-dark">
