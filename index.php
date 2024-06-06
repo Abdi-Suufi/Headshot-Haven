@@ -110,6 +110,7 @@ session_start();
                 <div class="map-clean text-center">
                     <h2>Personal Best: <span id="CPS-Best">0</span></h2>
                     <h2>Final CPS: <span id="finalCPS"></span></h2>
+                    <h2>Clicks: <span id="cpsCount"></span></h2>
                     <h2><span id="cpsTimer">10.0</span> seconds</h2>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="d-flex justify-content-center">

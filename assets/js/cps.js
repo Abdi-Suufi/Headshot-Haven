@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const cpsDuration = 10 * 1000; // 10 seconds in milliseconds
     const startCPSButton = document.getElementById('startCPSButton');
     const cpsCanvas = document.getElementById('cpsCanvas');
-    const cpsCountElement = document.getElementById('cpsCount');
+    let cpsCountElement; // Declare cpsCountElement as a global variable
     const finalCPSElement = document.getElementById('finalCPS');
     const cpsTimerElement = document.getElementById('cpsTimer');
     const ctx = cpsCanvas.getContext('2d');
@@ -15,13 +15,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Function to start the CPS test
     function startCPSTest() {
         cpsCount = 0;
-        cpsCountElement.textContent = cpsCount;
-        finalCPSElement.textContent = 0;
-        cpsTimerElement.textContent = (cpsDuration / 1000).toFixed(1);
-        startCPSButton.disabled = true;
-        startCountdown();
+        cpsCountElement = document.getElementById('cpsCount'); // Assign cpsCountElement here
+        if (cpsCountElement) {
+            cpsCountElement.textContent = cpsCount;
+            finalCPSElement.textContent = 0;
+            cpsTimerElement.textContent = (cpsDuration / 1000).toFixed(1);
+            startCPSButton.disabled = true;
+            startCountdown();
+        } else {
+            console.error('Element with ID "cpsCount" not found.');
+        }
     }
-
     // Function to start the countdown
     function startCountdown() {
         countdown = 3;
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function displayCPSScore() {
         cpsCanvas.removeEventListener('click', incrementCPS);
         finalCPSElement.textContent = (cpsCount / (cpsDuration / 1000)).toFixed(2);
-        sendCpsScoreToServer(cpsCount); // Send CPS score to server
+        sendCpsScoreToServer(cpsCount / (cpsDuration / 1000)); // Send CPS score to server
     }
 
     // Function to send CPS score to server
