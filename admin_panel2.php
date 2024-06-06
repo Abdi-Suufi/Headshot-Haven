@@ -50,8 +50,8 @@ if (!isset($_SESSION['admin_id'])) {
                             echo "<td>" . $row["username"] . "</td>";
                             echo "<td>" . $row["score"] . "</td>";
                             echo "<td>";
-                            echo "<a href='delete_user.php?username=" . $row["username"] . "' class='btn btn-danger btn-sm me-2'>Delete</a>";
-                            echo "<a href='reset_score.php?username=" . $row["username"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset score</a>";
+                            echo "<a href='delete_user2.php?username=" . $row["username"] . "' class='btn btn-danger btn-sm me-2'>Delete</a>";
+                            echo "<a href='reset_cps_score.php?username=" . $row["username"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset score</a>";
                             echo "</td>";
                             echo "</tr>";
                         }

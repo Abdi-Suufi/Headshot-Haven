@@ -1,46 +1,35 @@
 <?php
 session_start();
+include('database.php');
 
-// Check if the user is logged in using the correct session variable
-if (!isset($_SESSION['user_id'])) {
-    // If not logged in, return an error response
-    echo json_encode(array('success' => false, 'message' => 'User not logged in'));
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    echo json_encode(['success' => false, 'message' => 'User not logged in']);
     exit();
 }
 
-// Include database connection
-include('database.php');
+// Get the username from the session
+$username = $_SESSION['username'];
 
-// Retrieve parameters
-$username = $_SESSION['username']; // Retrieve username from session
-$newScore = $_POST['score'];
-
-// Get the current score for the user
-$query = "SELECT score FROM cps_scores WHERE username = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param('s', $username);
-$stmt->execute();
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-$currentScore = $row['score'] ?? 0; // Default to 0 if no score is found
-
-// Update the score only if the new score is higher
-if ($newScore > $currentScore) {
-    $query = "UPDATE cps_scores SET score = ? WHERE username = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param('is', $newScore, $username);
-
-    // Execute the query
-    if ($stmt->execute()) {
-        echo json_encode(array('success' => true));
-    } else {
-        echo json_encode(array('success' => false, 'message' => 'Failed to update score: ' . $conn->error));
-    }
+// Get the score from the POST request and ensure it is a float with two decimal places
+if (isset($_POST['score'])) {
+    $score = number_format(floatval($_POST['score']), 2, '.', '');
 } else {
-    echo json_encode(array('success' => false, 'message' => 'New score is not a high score'));
+    echo json_encode(['success' => false, 'message' => 'Score not provided']);
+    exit();
 }
 
-// Close the prepared statement and database connection
+// Prepare and execute the update query for cps_scores
+$updateQuery = "UPDATE cps_scores SET score = ? WHERE username = ?";
+$stmt = $conn->prepare($updateQuery);
+$stmt->bind_param("ds", $score, $username);
+
+if ($stmt->execute()) {
+    echo json_encode(['success' => true, 'message' => 'CPS score updated successfully']);
+} else {
+    echo json_encode(['success' => false, 'message' => 'Error updating CPS score']);
+}
+
 $stmt->close();
 $conn->close();
 ?>

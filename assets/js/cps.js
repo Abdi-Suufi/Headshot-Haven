@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const cpsDuration = 10 * 1000; // 10 seconds in milliseconds
     const startCPSButton = document.getElementById('startCPSButton');
     const cpsCanvas = document.getElementById('cpsCanvas');
-    let cpsCountElement; // Declare cpsCountElement as a global variable
+    const cpsCountElement = document.getElementById('cpsCount');
     const finalCPSElement = document.getElementById('finalCPS');
     const cpsTimerElement = document.getElementById('cpsTimer');
     const ctx = cpsCanvas.getContext('2d');
@@ -15,17 +15,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Function to start the CPS test
     function startCPSTest() {
         cpsCount = 0;
-        cpsCountElement = document.getElementById('cpsCount'); // Assign cpsCountElement here
-        if (cpsCountElement) {
-            cpsCountElement.textContent = cpsCount;
-            finalCPSElement.textContent = 0;
-            cpsTimerElement.textContent = (cpsDuration / 1000).toFixed(1);
-            startCPSButton.disabled = true;
-            startCountdown();
-        } else {
-            console.error('Element with ID "cpsCount" not found.');
-        }
+        cpsCountElement.textContent = cpsCount;
+        finalCPSElement.textContent = 0;
+        cpsTimerElement.textContent = (cpsDuration / 1000).toFixed(1);
+        startCPSButton.disabled = true;
+        startCountdown();
     }
+
     // Function to start the countdown
     function startCountdown() {
         countdown = 3;
@@ -56,8 +52,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Function to display the CPS score at the end
     function displayCPSScore() {
         cpsCanvas.removeEventListener('click', incrementCPS);
-        finalCPSElement.textContent = (cpsCount / (cpsDuration / 1000)).toFixed(2);
-        sendCpsScoreToServer(cpsCount / (cpsDuration / 1000)); // Send CPS score to server
+        const finalCPS = (cpsCount / (cpsDuration / 1000)).toFixed(2);
+        finalCPSElement.textContent = finalCPS;
+        sendCpsScoreToServer(finalCPS); // Send CPS score to server
     }
 
     // Function to send CPS score to server
