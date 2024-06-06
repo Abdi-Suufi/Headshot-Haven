@@ -28,7 +28,7 @@ if (!isset($_SESSION['admin_id'])) {
     <?php include('assets/navbar3.php'); ?>
 
     <!-- Sign In Form -->
-    <section class="text-center content-section masthead">
+    <section class="text-center content-section masthead" style="background-image:url('assets/img/testing2.jpg');">
         <div class="container mt-4">
             <h2>User Information - CPS Game</h2>
             <table class="table table-dark table-striped">

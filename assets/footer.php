@@ -1,5 +1,15 @@
-<footer class="panel-footer panel-primary" style="background-color: rgb(255, 100, 66);">
-        <div class="container text-center panel-footer panel-primary">
-            <p>Copyright ©&nbsp;headshot haven 2024</p>
+<footer class="panel-footer panel-primary" style="background-image:url('assets/img/orange.jpg');">
+    <div class="container">
+        <div class="row">
+            <!-- Left section for copyright information -->
+            <div class="col-md-6">
+                <p class="text-center">Copyright ©&nbsp;headshot haven 2024</p>
+            </div>
+            <!-- Right section for contact details -->
+            <div class="col-md-6">
+                <p class="text-center">Contact:<br>
+                    Email: abdisuufi123@gmail.com<br>
+            </div>
         </div>
-    </footer>
+    </div>
+</footer>

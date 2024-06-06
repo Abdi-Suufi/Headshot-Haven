@@ -15,7 +15,7 @@
     <?php include('assets/navbar2.php'); ?>
 
     <!-- Sign Up Form -->
-    <section class="text-center content-section masthead">
+    <section class="text-center content-section masthead" style="background-image:url('assets/img/testing.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">

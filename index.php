@@ -34,7 +34,7 @@ session_start();
         </div>
     </header>
 
-    <section id="aim-training" class="text-center content-section masthead" style="background-image:url('assets/img/controller3.jpg');">
+    <section id="aim-training" class="text-center content-section masthead" style="background-image:url('assets/img/orange.jpg');">
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
@@ -44,8 +44,8 @@ session_start();
                     <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
                     <div class="d-flex justify-content-center">
                         <button id="startButton" class="custom-btn">Start Game</button>
-                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
-                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
+                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ session_start();
     </section>
 
     <!-- Section to display table -->
-    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-image:url('assets/img/controller3.jpg');">
+    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-image:url('assets/img/orange.jpg');">
         <div class="container">
             <div class="col-lg-8 mx-auto">
                 <h2 class="center-text">Weapon Specs</h2>
@@ -104,7 +104,7 @@ session_start();
         <script src="assets/js/roulette.js"></script>
     </section>
 
-    <section id="cps" class="text-center content-section masthead" style="background-image:url('assets/img/controller4.jpg');">
+    <section id="cps" class="text-center content-section masthead" style="background-image:url('assets/img/orange.jpg');">
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
@@ -115,8 +115,8 @@ session_start();
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="d-flex justify-content-center">
                         <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
-                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
-                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
+                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
                     </div>
                 </div>
             </div>
