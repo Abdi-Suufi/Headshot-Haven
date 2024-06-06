@@ -1,3 +1,0 @@
-# Headshot Haven
- Valorant website to help your aim
-## In progress atm...
