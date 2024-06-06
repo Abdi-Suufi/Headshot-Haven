@@ -16,7 +16,7 @@ $username = $_SESSION['username']; // Retrieve username from session
 $newScore = $_POST['score'];
 
 // Get the current score for the user
-$query = "SELECT score FROM aim_training_scores WHERE username = ?";
+$query = "SELECT score FROM cps_scores WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $username);
 $stmt->execute();
@@ -26,7 +26,7 @@ $currentScore = $row['score'] ?? 0; // Default to 0 if no score is found
 
 // Update the score only if the new score is higher
 if ($newScore > $currentScore) {
-    $query = "UPDATE aim_training_scores SET score = ? WHERE username = ?";
+    $query = "UPDATE cps_scores SET score = ? WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param('is', $newScore, $username);
 

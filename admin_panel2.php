@@ -30,18 +30,18 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- Sign In Form -->
     <section class="text-center content-section masthead">
         <div class="container mt-4">
-            <h2>User Information - Aim training</h2>
+            <h2>User Information - CPS Game</h2>
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Score</th>
+                        <th>CPS Score</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $query = "SELECT a.id, a.username, a.score FROM aim_training_scores a ORDER BY a.score DESC";
+                    $query = "SELECT c.id, c.username, c.score FROM cps_scores c ORDER BY c.score DESC";
                     $result = $conn->query($query);
 
                     if ($result->num_rows > 0) {

@@ -13,8 +13,8 @@ include('database.php');
 
 $username = $_SESSION['username'];
 
-// Prepare and execute the SQL query to retrieve the score
-$query = "SELECT score FROM aim_training_scores WHERE username = ?";
+// Prepare and execute the SQL query to retrieve the CPS score
+$query = "SELECT score FROM cps_scores WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $username);
 $stmt->execute();
@@ -22,9 +22,9 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $score = $row['score'] ?? 0; // Current score (also personal best), default to 0 if null
+    $score = $row['score'] ?? 0; // Current CPS score, default to 0 if null
     
-    echo json_encode(array('success' => true, 'personalBest' => $score)); // Return score as personalBest
+    echo json_encode(array('success' => true, 'cpsScore' => $score)); // Return CPS score
 } else {
     echo json_encode(array('success' => false, 'message' => 'User not found'));
 }

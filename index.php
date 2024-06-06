@@ -35,38 +35,38 @@ session_start();
     </header>
 
     <section id="aim-training" class="text-center content-section masthead" style="background-image:url('assets/img/controller3.jpg');">
-    <div class="container">
-        <div class="row">
-            <div class="map-clean text-center">
-                <h2>Personal Best: <span id="personalBest">0</span></h2>
-                <h2>Score:<span id="score"></span></h2>
-                <h2><span id="timer">30.0</span> seconds</h2>
-                <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
-                <div class="d-flex justify-content-center">
-                    <button id="startButton" class="custom-btn">Start Game</button>
-                    <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
-                    <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+        <div class="container">
+            <div class="row">
+                <div class="map-clean text-center">
+                    <h2>Personal Best: <span id="personalBest">0</span></h2>
+                    <h2>Score:<span id="score"></span></h2>
+                    <h2><span id="timer">30.0</span> seconds</h2>
+                    <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
+                    <div class="d-flex justify-content-center">
+                        <button id="startButton" class="custom-btn">Start Game</button>
+                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
+                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<script>
-    function toggleFullScreen() {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch((err) => {
-                alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-            });
-        } else {
-            document.exitFullscreen();
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch((err) => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
         }
-    }
-</script>
+    </script>
 
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
         <div class="container">
-            <h2>Aiming Leaderboard</h2>
+            <h2>Aim Leaderboard</h2>
             <table class="table table-striped table-dark">
                 <thead>
                     <tr>
@@ -105,23 +105,78 @@ session_start();
     </section>
 
     <section id="cps" class="text-center content-section masthead" style="background-image:url('assets/img/controller4.jpg');">
-    <div class="container">
-        <div class="row">
-            <div class="map-clean text-center">
-                <h2>Clicks Per Second: <span id="cpsCount">0</span></h2>
-                <h2>Final CPS: <span id="finalCPS">0</span></h2>
-                <h2>Time Left: <span id="cpsTimer">10.0</span> seconds</h2>
-                <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
-                <div class="d-flex justify-content-center">
-                    <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
-                    <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
-                    <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+        <div class="container">
+            <div class="row">
+                <div class="map-clean text-center">
+                    <h2>Personal Best: <span id="CPS-Best">0</span></h2>
+                    <h2>Final CPS: <span id="finalCPS"></span></h2>
+                    <h2><span id="cpsTimer">10.0</span> seconds</h2>
+                    <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
+                    <div class="d-flex justify-content-center">
+                        <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
+                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: rgb(255, 100, 66); margin-right: 8px;"></i>
+                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: rgb(255, 100, 66);"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
+        <div class="container">
+            <h2>CPS Leaderboard</h2>
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="cpsLeaderboardBody">
+                    <!-- Leaderboard data will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_cps_score.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const cpsScoreContainer = document.getElementById('CPS-Best');
+                        cpsScoreContainer.innerHTML = `${data.cpsScore}`;
+                    } else {
+                        console.error('Failed to fetch CPS score:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching CPS score:', error);
+                });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_cps_leaderboard.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const cpsLeaderboardBody = document.getElementById('cpsLeaderboardBody');
+                        data.leaderboard.forEach(entry => {
+                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td></tr>`;
+                            cpsLeaderboardBody.innerHTML += row;
+                        });
+                    } else {
+                        console.error('Failed to fetch CPS leaderboard data:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching CPS leaderboard data:', error);
+                });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -143,23 +198,56 @@ session_start();
                 });
         });
     </script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('get_score.php')
+        // Example function to update the score for Aim Training
+        function updateAimTrainingScore(score) {
+            fetch('update_score.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        score: score
+                    })
+                })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Update the score element
-                        document.getElementById('score').textContent = data.score;
+                        console.log('Aim Training score updated successfully');
                     } else {
-                        console.error('Failed to fetch user score:', data.message);
+                        console.error('Error updating Aim Training score:', data.message);
                     }
                 })
                 .catch(error => {
-                    console.error('Error fetching user score:', error);
+                    console.error('Error:', error);
                 });
-        });
+        }
+    </script>
+
+    <script>
+        // Example function to update the score for CPS
+        function updateCpsScore(score) {
+            fetch('update_cps_score.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        score: score
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('CPS score updated successfully');
+                    } else {
+                        console.error('Error updating CPS score:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 
     <script src="assets/js/cps.js"></script>

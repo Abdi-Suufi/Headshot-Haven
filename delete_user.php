@@ -9,27 +9,26 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 }
 
-// Check if user_id parameter is provided
-if (!isset($_GET['user_id'])) {
-    // Redirect or show an error if user_id is missing
-    header("Location: admin_panel.php?error=missing_user_id"); 
+// Check if username parameter is provided
+if (!isset($_GET['username'])) {
+    // Redirect or show an error if username is missing
+    header("Location: admin_panel.php?error=missing_username"); 
     exit();
 }
 
-// Get the user ID to delete
-$userIdToDelete = filter_var($_GET['user_id'], FILTER_VALIDATE_INT);
+// Get the username to delete
+$usernameToDelete = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
 
-// Validate user ID (ensure it's an integer)
-if (!$userIdToDelete) {
-    // Redirect or show an error if user_id is invalid
-    header("Location: admin_panel.php?error=invalid_user_id"); 
-    exit();
-}
+// Prepare and execute the delete query for aim_training_scores
+$deleteScoresQuery = "DELETE FROM aim_training_scores WHERE username = ?";
+$stmt = $conn->prepare($deleteScoresQuery);
+$stmt->bind_param("s", $usernameToDelete);
+$stmt->execute();
 
-// Prepare and execute the delete query
-$deleteQuery = "DELETE FROM users WHERE id = ?";
-$stmt = $conn->prepare($deleteQuery);
-$stmt->bind_param("i", $userIdToDelete);
+// Prepare and execute the delete query for users
+$deleteUserQuery = "DELETE FROM users WHERE username = ?";
+$stmt = $conn->prepare($deleteUserQuery);
+$stmt->bind_param("s", $usernameToDelete);
 
 if ($stmt->execute()) {
     // User deleted successfully
@@ -40,3 +39,7 @@ if ($stmt->execute()) {
     header("Location: admin_panel.php?error=delete_failed"); 
     exit();
 }
+
+$stmt->close();
+$conn->close();
+?>

@@ -35,8 +35,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             if (countdown < 0) {
                 clearInterval(countdownInterval);
                 isCPSStarted = true;
-                cpsCanvas.addEventListener('click', incrementCPS);
+                clearCanvas(); // Clear the canvas after countdown
                 startTime = Date.now();
+                cpsCanvas.addEventListener('click', incrementCPS); // Add the event listener back here
                 requestAnimationFrame(cpsGameLoop);
             }
         }, 1000);
@@ -52,6 +53,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function displayCPSScore() {
         cpsCanvas.removeEventListener('click', incrementCPS);
         finalCPSElement.textContent = (cpsCount / (cpsDuration / 1000)).toFixed(2);
+        sendCpsScoreToServer(cpsCount); // Send CPS score to server
+    }
+
+    // Function to send CPS score to server
+    function sendCpsScoreToServer(score) {
+        const data = new FormData();
+        data.append('score', score);
+
+        fetch('update_cps_score.php', {
+            method: 'POST',
+            body: data
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('CPS score updated successfully');
+                } else {
+                    console.error('Error updating CPS score:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     // Function to clear canvas

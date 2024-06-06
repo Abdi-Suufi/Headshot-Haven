@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Hash the password for security
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Prepare and bind the SQL statement
-        $insertQuery = "INSERT INTO users (username, email, password, score) VALUES (?, ?, ?, 0)";
+        // Prepare and bind the SQL statement to insert into users table
+        $insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
         $stmt->bind_param("sss", $username, $email, $hashed_password);
 
@@ -35,6 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             // Get the last inserted ID (the new user's ID)
             $userId = $conn->insert_id;
+
+            // Insert default score for the new user into aim_training_scores table
+            $insertAimTrainingScoreQuery = "INSERT INTO aim_training_scores (username, score) VALUES (?, 0)";
+            $stmt = $conn->prepare($insertAimTrainingScoreQuery);
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+
+            // Insert default score for the new user into cps_scores table
+            $insertCpsScoreQuery = "INSERT INTO cps_scores (username, score) VALUES (?, 0)";
+            $stmt = $conn->prepare($insertCpsScoreQuery);
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
 
             // Set session variables with username and user_id
             $_SESSION['username'] = $username;
