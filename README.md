@@ -8,7 +8,6 @@
 - [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## Overview
@@ -66,7 +65,35 @@ To set up the project locally, follow these steps:
    - Play the aim training games, check the leaderboards, and explore other features.
 
 ## Screenshots
-(Add screenshots of your application here)
+### Header Section:
+![Image of Hero section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/main.png)
+
+### Aim-training Section:
+![Image of Aim-training section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/aim-training.png)
+
+### Aim-training Leaderboard Section:
+![Image of Aim-training Leaderboard section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/aim-leaderboard.png)
+
+### Weapon Specification Section:
+![Image of weapon-spec section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/weapon-spec.png)
+
+### Roulette Section:
+![Image of weapon roulette section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/roulette.png)
+
+### Cps Section:
+![Image of cps game section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/cps-game.png)
+
+### Cps leaderboard Section:
+![Image of cps game leaderboard section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/cps-leaderboard.png)
+
+### Signin Page:
+![Image of signin page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/signin.png)
+
+### Signup Page:
+![Image of signup page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/signup.png)
+
+### Admin Page:
+![Image of Admin page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/admin-page.png)
 
 ## Contributing
 If you would like to contribute to this project, please follow these steps:
@@ -86,10 +113,7 @@ If you would like to contribute to this project, please follow these steps:
     ```
 5. **Create a pull request.**
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Contact
-- **Name:** Your Name
-- **Email:** your-email@example.com
-- **GitHub:** [your-username](https://github.com/your-username)
+- **Name:** Abdi Rahman Suufi
+- **Email:** abdisuufi123@gmail.com
+- **GitHub:** [Abdi-Suufi](https://github.com/Abdi-Suufi)
