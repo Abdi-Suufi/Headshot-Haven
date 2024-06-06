@@ -14076,7 +14076,7 @@ a:hover {
     margin-bottom: 0;
     text-transform: uppercase;
     border-bottom: 1px solid rgba(255, 255, 255, .3);
-    background-color: #000
+    background-color: rgb(122, 74, 194);
 }
 
 #mainNav .navbar-toggler {
@@ -14124,7 +14124,7 @@ a:hover {
         padding-top: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, .3);
-        background: #000
+        background: rgb(120, 73, 195);
     }
 
     #mainNav .nav-link.active {

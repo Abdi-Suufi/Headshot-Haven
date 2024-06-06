@@ -19,12 +19,12 @@ session_start();
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <?php include('assets/navbar.php'); ?>
     <!--Top page-->
-    <header class="masthead" style="background-image:url('assets/img/controller.jpg'); ">
+    <header class="masthead" style="background-image:url('assets/img/setup.jpg'); ">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <a class="navbar-brand" href="index.php">
+                        <a class="navbar-brand" href="index.php"><br><br><br><br>
                             <img src="assets/img/headshot-haven.svg" width="700" height="auto" style="max-width: 100%; margin-bottom: 50px;">
                         </a><br>
                         <a class="custom-btn" href="#aim-training"><span>Start</span></a>
