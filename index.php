@@ -34,7 +34,7 @@ session_start();
         </div>
     </header>
 
-    <section id="aim-training" class="text-center content-section masthead" style="background-image:url('assets/img/orange.jpg');">
+    <section id="aim-training" class="text-center content-section masthead" style="background-color: black;">
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
@@ -64,7 +64,7 @@ session_start();
         }
     </script>
 
-    <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/controller5.jpg');">
+    <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/ai.jpg');">
         <div class="container">
             <h2>Aim Leaderboard</h2>
             <table class="table table-striped table-dark">
