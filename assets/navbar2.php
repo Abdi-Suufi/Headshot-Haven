@@ -1,4 +1,3 @@
-<script src="https://kit.fontawesome.com/56e72382bd.js" crossorigin="anonymous"></script>
 <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="index.php">

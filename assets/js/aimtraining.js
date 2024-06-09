@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const ballRadius = 30;
     let score = 0;
     let startTime;
-    const gameDuration = 30 * 1000; // Change game duration to 30 seconds
+    // Allows the game to run for 30 seconds
+    const gameDuration = 30 * 1000;
 
     let personalBest = 0;
     let isGameStarted = false;
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const startButton = document.getElementById('startButton');
     const scoreDisplay = document.getElementById('score');
     const personalBestDisplay = document.getElementById('personalBest');
-    const timerDisplay = document.getElementById('timer'); // Add this line
+    const timerDisplay = document.getElementById('timer');
 
     // Define grid points
     const gridSize = 100; // Adjust the grid size as needed

@@ -23,7 +23,7 @@ function RGB2Color(r, g, b) {
 
 function getColor(item) {
   var orange = "rgb(255, 100, 66)";
-  var purple = "rgb(154, 94, 216)";
+  var purple = "rgb(178, 69, 46)";
   
   return item % 2 === 0 ? orange : purple;
 }
@@ -31,25 +31,25 @@ function getColor(item) {
 function drawRouletteWheel() {
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
-    var outsideRadius = 140;
-    var textRadius = 110;
-    var insideRadius = 85;
+    var outsideRadius = canvas.width / 2 * 0.9;
+    var textRadius = canvas.width / 2 * 0.75;
+    var insideRadius = canvas.width / 2 * 0.55;
 
     ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 380, 380);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
 
-    ctx.font = 'bold 8px Helvetica, Arial';
+    ctx.font = `${Math.max(canvas.width / 40, 8)}px Helvetica, Arial`;
 
     for (var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
       ctx.fillStyle = getColor(i);
 
       ctx.beginPath();
-      ctx.arc(190, 190, outsideRadius, angle, angle + arc, false); // updated from 250, 250
-      ctx.arc(190, 190, insideRadius, angle + arc, angle, true); // updated from 250, 250
+      ctx.arc(canvas.width / 2, canvas.height / 2, outsideRadius, angle, angle + arc, false);
+      ctx.arc(canvas.width / 2, canvas.height / 2, insideRadius, angle + arc, angle, true);
       ctx.stroke();
       ctx.fill();
 
@@ -58,8 +58,8 @@ function drawRouletteWheel() {
       ctx.shadowOffsetY = -1;
       ctx.shadowBlur = 0;
       ctx.fillStyle = "black";
-      ctx.translate(190 + Math.cos(angle + arc / 2) * textRadius,
-        190 + Math.sin(angle + arc / 2) * textRadius); // updated from 250, 250
+      ctx.translate(canvas.width / 2 + Math.cos(angle + arc / 2) * textRadius,
+        canvas.height / 2 + Math.sin(angle + arc / 2) * textRadius);
       ctx.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
       ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
@@ -69,14 +69,14 @@ function drawRouletteWheel() {
     // Arrow
     ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.moveTo(190 - 4, 190 - (outsideRadius + 5)); // updated from 250
-    ctx.lineTo(190 + 4, 190 - (outsideRadius + 5)); // updated from 250
-    ctx.lineTo(190 + 4, 190 - (outsideRadius - 5)); // updated from 250
-    ctx.lineTo(190 + 9, 190 - (outsideRadius - 5)); // updated from 250
-    ctx.lineTo(190 + 0, 190 - (outsideRadius - 13)); // updated from 250
-    ctx.lineTo(190 - 9, 190 - (outsideRadius - 5)); // updated from 250
-    ctx.lineTo(190 - 4, 190 - (outsideRadius - 5)); // updated from 250
-    ctx.lineTo(190 - 4, 190 - (outsideRadius + 5)); // updated from 250
+    ctx.moveTo(canvas.width / 2 - 4, canvas.height / 2 - (outsideRadius + 5));
+    ctx.lineTo(canvas.width / 2 + 4, canvas.height / 2 - (outsideRadius + 5));
+    ctx.lineTo(canvas.width / 2 + 4, canvas.height / 2 - (outsideRadius - 5));
+    ctx.lineTo(canvas.width / 2 + 9, canvas.height / 2 - (outsideRadius - 5));
+    ctx.lineTo(canvas.width / 2, canvas.height / 2 - (outsideRadius - 13));
+    ctx.lineTo(canvas.width / 2 - 9, canvas.height / 2 - (outsideRadius - 5));
+    ctx.lineTo(canvas.width / 2 - 4, canvas.height / 2 - (outsideRadius - 5));
+    ctx.lineTo(canvas.width / 2 - 4, canvas.height / 2 - (outsideRadius + 5));
     ctx.fill();
   }
 }
@@ -107,8 +107,9 @@ function stopRotateWheel() {
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
+  ctx.fillStyle = 'rgb(255, 100, 66)';
   var text = options[index];
-  ctx.fillText(text, 190 - ctx.measureText(text).width / 2, 190 + 10); // updated from 250
+  ctx.fillText(text, canvas.width / 2 - ctx.measureText(text).width / 2, canvas.height / 2 + 10);
   ctx.restore();
 }
 
