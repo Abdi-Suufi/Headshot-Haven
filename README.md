@@ -1,4 +1,4 @@
-# [Headshot Haven](https://headshot-haven.000webhostapp.com)
+# <a href="https://headshot-haven.000webhostapp.com" target="_blank">Headshot Haven</a>
 
 ## Table of Contents
 - [Overview](#overview)
