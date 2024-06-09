@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/56e72382bd.js" crossorigin="anonymous"></script> <!-- added for navbar triple bar -->
 <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="index.php">
@@ -7,7 +8,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" id="nav-bg">
                 <li class="nav-item nav-link"><a class="nav-link" href="index.php">Home</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="signin.php">SignIn</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="signup.php">SignUp</a></li>

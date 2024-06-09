@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/styles.css">
 <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="index.php">
@@ -7,7 +8,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" id="nav-bg">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="aimTrainingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Aim Training

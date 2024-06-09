@@ -301,7 +301,7 @@ header.masthead {
   box-shadow: none;
 }
 
-ul {
+#nav-bg {
   background-color: rgb(24, 24, 24);
   border-radius: 10px;
 }

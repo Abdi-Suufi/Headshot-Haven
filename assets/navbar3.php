@@ -8,7 +8,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto" id="nav-bg">
                 <li class="nav-item nav-link"><a class="nav-link" href="admin_panel.php">aim leaderboard</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="admin_panel2.php">cps leaderboard</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="logout.php">Sign Out</a></li>
