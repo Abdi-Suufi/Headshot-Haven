@@ -58,7 +58,7 @@ session_start();
                         <div class="col">
                             <button id="startButton" class="custom-btn">Start Game</button>
                         </div>
-                        <div class="col">
+                        <div class="col" style="display: flex; justify-content: flex-end;">
                             <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; cursor: pointer; margin-right: 6px;"></i>
                             <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange; cursor: pointer;"></i>
                         </div>
@@ -124,11 +124,17 @@ session_start();
                     <h2>Clicks: <span id="cpsCount"></span></h2>
                     <h2><span id="cpsTimer">10.0</span> seconds</h2>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
-                    <div class="d-flex justify-content-center">
-                        <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
-                        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
-                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
-                    </div>
+                    <div class="row">
+    <div class="col-lg-7"> <!-- Make the column with the Start CPS Test button wider on larger screens -->
+        <div class="text-end"> <!-- Align the Start CPS Test button to the right side -->
+            <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
+        </div>
+    </div>
+    <div class="col-lg-4 d-flex justify-content-center"> <!-- Make the column with the icons smaller on larger screens -->
+        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
+        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
+    </div>
+</div>
                 </div>
             </div>
         </div>
