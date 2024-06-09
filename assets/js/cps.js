@@ -55,6 +55,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const finalCPS = (cpsCount / (cpsDuration / 1000)).toFixed(2);
         finalCPSElement.textContent = finalCPS;
         sendCpsScoreToServer(finalCPS); // Send CPS score to server
+        displayFinalScoreOnCanvas(finalCPS);
+    }
+
+    // Function to display final score on the canvas
+    function displayFinalScoreOnCanvas(finalCPS) {
+        clearCanvas();
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(`Game Over. Your Score: ${finalCPS} CPS`, canvas.width / 2 - 150, canvas.height / 2);
     }
 
     // Function to send CPS score to server

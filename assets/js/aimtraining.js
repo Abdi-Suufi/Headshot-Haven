@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let isGameStarted = false;
     let countdown = 3;
     const startButton = document.getElementById('startButton');
-    const scoreDisplay = document.getElementById('score');
     const personalBestDisplay = document.getElementById('personalBest');
     const timerDisplay = document.getElementById('timer');
 
@@ -155,7 +154,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 requestAnimationFrame(gameLoop);
             } else {
                 console.log('Game over! Your score: ' + score);
-                scoreDisplay.textContent = score;
+                displayFinalScore();
                 sendScoreToServer(score);
                 startButton.disabled = false;
                 isGameStarted = false;
@@ -163,6 +162,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         } else {
             requestAnimationFrame(gameLoop);
         }
+    }
+
+    // Function to display the final score on the canvas
+    function displayFinalScore() {
+        clearCanvas();
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "white";
+        ctx.fillText(`Game over! Your score: ${score}`, canvas.width / 2 - 150, canvas.height / 2);
     }
 
     // Fetch and display the personal best from the server
@@ -207,7 +214,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         balls = [];
         startTime = null;
         isGameStarted = false;
-        scoreDisplay.textContent = score;
         timerDisplay.textContent = (gameDuration / 1000).toFixed(1); // Reset timer display
     }
 

@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="assets/styles.css">
 <nav class="navbar navbar-expand-md fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="index.php">

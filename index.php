@@ -42,7 +42,6 @@ session_start();
             <div class="row">
                 <div class="map-clean text-center">
                     <h2>Personal Best: <span id="personalBest">0</span></h2>
-                    <h2>Score:<span id="score"></span></h2>
                     <h2><span id="timer">30.0</span> seconds</h2>
                     <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
                     <div class="row">
