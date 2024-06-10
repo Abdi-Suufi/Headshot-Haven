@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const startButton = document.getElementById('startButton');
     const personalBestDisplay = document.getElementById('personalBest');
     const timerDisplay = document.getElementById('timer');
+    const accuracyDisplay = document.getElementById('accuracy');
+
+    let totalClicks = 0;
+    let successfulClicks = 0;
 
     // Define grid points
     const gridSize = 100; // Adjust the grid size as needed
@@ -80,12 +84,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
 
+        totalClicks++;
+
+        let ballClicked = false;
+
         balls.forEach((ball, index) => {
             if (isInsideBall(ball, mouseX, mouseY)) {
                 resetBall(ball);
-                updateScore();
+                updateScore(1);
+                successfulClicks++;
+                ballClicked = true;
             }
         });
+
+        if (!ballClicked) {
+            updateScore(-1);
+        }
+
+        updateAccuracy();
     });
 
     // Function to reset a ball's position
@@ -107,8 +123,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Function to update the score
-    function updateScore() {
-        score++;
+    function updateScore(change) {
+        score += change;
+    }
+
+    // Function to update the accuracy
+    function updateAccuracy() {
+        const accuracy = ((successfulClicks / totalClicks) * 100).toFixed(1);
+        accuracyDisplay.textContent = `Accuracy: ${accuracy}%`;
     }
 
     // Function to clear canvas
@@ -211,10 +233,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function resetGameState() {
         score = 0;
+        totalClicks = 0;
+        successfulClicks = 0;
         balls = [];
         startTime = null;
         isGameStarted = false;
         timerDisplay.textContent = (gameDuration / 1000).toFixed(1); // Reset timer display
+        accuracyDisplay.textContent = 'Accuracy: 0%'; // Reset accuracy display
     }
 
     startButton.addEventListener('click', () => {
