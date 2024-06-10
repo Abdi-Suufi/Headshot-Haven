@@ -5,7 +5,7 @@ session_start();
 <html data-bs-theme="light" lang="en">
 
 <head>
-    <link rel="shortcut icon" type="image" href="assets/img/headshot-haven-logo.svg">
+    <link rel="shortcut icon" type="image" href="assets/img/favicon.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Headshot Haven</title>
@@ -45,14 +45,15 @@ session_start();
                     <h2><span id="timer">30.0</span> seconds</h2>
                     <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
                     <div class="row">
-                        <div class="col">
+                        <div class="col" style="display: flex; align-items: center;">
+                            <span style="margin-right: 8px;">Upload Crosshair:</span>
                             <a id="file-btn">
                                 <svg viewBox="0 0 256 256" height="32" width="38" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M74.34 85.66a8 8 0 0 1 11.32-11.32L120 108.69V24a8 8 0 0 1 16 0v84.69l34.34-34.35a8 8 0 0 1 11.32 11.32l-48 48a8 8 0 0 1-11.32 0ZM240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h52.4a4 4 0 0 1 2.83 1.17L111 145a24 24 0 0 0 34 0l23.8-23.8a4 4 0 0 1 2.8-1.2H224a16 16 0 0 1 16 16m-40 32a12 12 0 1 0-12 12a12 12 0 0 0 12-12" fill="currentColor"></path>
                                 </svg>
                             </a>
                             <input type="file" id="crosshair-upload" class="custom-btn" accept=".cur" style="display: none;">
-                            <a href="http://www.rw-designer.com/gallery?search=crosshair" target="_blank" class="custom-file-upload text-black" style="text-decoration: none; margin-top: 2px; float: left;">Find crosshairs here</a>
+                            <a href="http://www.rw-designer.com/gallery?search=crosshair" target="_blank" class="custom-file-upload text-black" style="text-decoration: none; margin-top: 2px; margin-left: 8px;">Find crosshairs here</a>
                         </div>
                         <div class="col">
                             <button id="startButton" class="custom-btn">Start Game</button>
@@ -124,16 +125,16 @@ session_start();
                     <h2><span id="cpsTimer">10.0</span> seconds</h2>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="row">
-    <div class="col-lg-7"> <!-- Make the column with the Start CPS Test button wider on larger screens -->
-        <div class="text-end"> <!-- Align the Start CPS Test button to the right side -->
-            <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
-        </div>
-    </div>
-    <div class="col-lg-4 d-flex justify-content-center"> <!-- Make the column with the icons smaller on larger screens -->
-        <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
-        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
-    </div>
-</div>
+                        <div class="col-lg-7"> <!-- Make the column with the Start CPS Test button wider on larger screens -->
+                            <div class="text-end"> <!-- Align the Start CPS Test button to the right side -->
+                                <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex justify-content-center"> <!-- Make the column with the icons smaller on larger screens -->
+                            <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
+                            <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
