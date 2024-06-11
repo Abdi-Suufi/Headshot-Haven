@@ -164,7 +164,6 @@ session_start();
             <div class="row">
                 <div class="map-clean text-center">
                     <h2>Reaction Speed Test</h2>
-                    <h4>Reaction Time: <span id="reactionTime">0</span> ms</h4>
                     <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4> <!-- Display personal best here -->
                     <canvas id="reactionCanvas" width="1000" height="500"></canvas><br>
                     <div class="row">
@@ -189,7 +188,7 @@ session_start();
                 <thead>
                     <tr>
                         <th>Player</th>
-                        <th>Score (ms)</th>
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody id="reactionLeaderboardBody">
@@ -207,7 +206,7 @@ session_start();
                     if (data.success) {
                         const reactionLeaderboardBody = document.getElementById('reactionLeaderboardBody');
                         data.leaderboard.forEach(entry => {
-                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td></tr>`;
+                            const row = `<tr><td>${entry.username}</td><td>${entry.score} ms</td></tr>`;
                             reactionLeaderboardBody.innerHTML += row;
                         });
                     } else {

@@ -22,7 +22,7 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $score = $row['score'] ?? 0; // Current reaction test score, default to 0 if null
+    $score = $row['score'] !== null ? $row['score'] : null; // Current reaction test score, default to null if null
     
     echo json_encode(array('success' => true, 'reactionScore' => $score)); // Return reaction test score
 } else {

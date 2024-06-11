@@ -28,7 +28,16 @@
                         <li><a class="dropdown-item" href="#cpsleaderboard">CPS Leaderboard</a></li>
                     </ul>
                 </li>
-                <?php if (isset($_SESSION['username'])): ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="reactionTestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Reaction Test
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="reactionTestDropdown">
+                        <li><a class="dropdown-item" href="#reaction-speed">Reaction Test</a></li>
+                        <li><a class="dropdown-item" href="#reaction-leaderboard">Reaction Test Leaderboard</a></li>
+                    </ul>
+                </li>
+                <?php if (isset($_SESSION['username'])) : ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo htmlspecialchars($_SESSION['username']); ?>
@@ -37,7 +46,7 @@
                             <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
                         </ul>
                     </li>
-                <?php else: ?>
+                <?php else : ?>
                     <li class="nav-item"><a class="nav-link" href="signin.php">Sign In</a></li>
                     <li class="nav-item"><a class="nav-link" href="signup.php">Sign Up</a></li>
                 <?php endif; ?>

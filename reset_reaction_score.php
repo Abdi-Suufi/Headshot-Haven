@@ -20,7 +20,7 @@ if (!isset($_GET['username'])) {
 $usernameToReset = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
 
 // Prepare and execute the update query
-$updateQuery = "UPDATE cps_scores SET score = 0 WHERE username = ?";
+$updateQuery = "UPDATE reaction_test_scores SET score = null WHERE username = ?";
 $stmt = $conn->prepare($updateQuery);
 $stmt->bind_param("s", $usernameToReset);
 

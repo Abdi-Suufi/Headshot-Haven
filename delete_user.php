@@ -17,7 +17,7 @@ if (!isset($_GET['username'])) {
 }
 
 // Get the username to delete
-$usernameToDelete = filter_var($_GET['username'], FILTER_SANITIZE_STRING);
+$usernameToDelete = filter_var($_GET['username']);
 
 try {
     // Begin a transaction
@@ -37,6 +37,13 @@ try {
     $stmt->execute();
     $stmt->close();
 
+    // Prepare and execute the delete query for aim_training_scores
+    $deleteReactionTimeScoresQuery = "DELETE FROM reaction_test_scores WHERE username = ?";
+    $stmt = $conn->prepare($deleteReactionTimeScoresQuery);
+    $stmt->bind_param("s", $usernameToDelete);
+    $stmt->execute();
+    $stmt->close();
+
     // Prepare and execute the delete query for users
     $deleteUserQuery = "DELETE FROM users WHERE username = ?";
     $stmt = $conn->prepare($deleteUserQuery);
@@ -48,14 +55,14 @@ try {
     $conn->commit();
 
     // User deleted successfully
-    header("Location: " . $_SERVER['HTTP_REFERER'] . "?success=user_deleted");
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 } catch (Exception $e) {
     // Rollback the transaction if an error occurred
     $conn->rollback();
 
     // Error occurred while deleting the user
-    header("Location: " . $_SERVER['HTTP_REFERER'] . "?error=delete_failed");
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 

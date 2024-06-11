@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let reactionCanvas = document.getElementById('reactionCanvas');
     let reactionContext = reactionCanvas.getContext('2d');
     let startReactionButton = document.getElementById('startReactionButton');
-    let reactionTimeDisplay = document.getElementById('reactionTime');
+    let reactionTimeDisplay = 0;
     let reactionStartTime;
     let reactionTimeout;
     let gameActive = false;
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Reset the canvas and timer
         reactionContext.fillStyle = 'red';
         reactionContext.fillRect(0, 0, reactionCanvas.width, reactionCanvas.height);
-        reactionTimeDisplay.textContent = '0';
 
         // Generate a random delay between 1 and 6 seconds
         let randomDelay = Math.random() * 5000 + 1000;
@@ -39,6 +38,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // Send the reaction time score to the server
         sendReactionScoreToServer(reactionTime); // Call the correct function name
+
+        // Display reaction time on canvas
+        displayReactionTimeOnCanvas(reactionTime);
     }
 
     function sendReactionScoreToServer(score) {
@@ -79,6 +81,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
     }
 
+    // Function to display the reaction time on the canvas
+    function displayReactionTimeOnCanvas(reactionTime) {
+        reactionContext.font = '24px Arial';
+        reactionContext.fillStyle = 'white';
+        reactionContext.textAlign = 'center';
+        reactionContext.fillText(reactionTime + ' ms', reactionCanvas.width / 2, reactionCanvas.height / 2);
+    }
+
     function resetGame() {
         gameActive = false; // Allow starting a new game
         reactionCanvas.removeEventListener('click', recordReactionTime);
@@ -86,7 +96,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         // Clear the canvas
         reactionContext.clearRect(0, 0, reactionCanvas.width, reactionCanvas.height);
-        reactionTimeDisplay.textContent = '0';
     }
 
     startReactionButton.addEventListener('click', () => {

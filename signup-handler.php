@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
 
             // Insert default score for the new user into reaction_test_scores table
-            $insertReactionScoreQuery = "INSERT INTO reaction_test_scores (username, score) VALUES (?, 0)";
+            $insertReactionScoreQuery = "INSERT INTO reaction_test_scores (username, score) VALUES (?, null)";
             $stmt = $conn->prepare($insertReactionScoreQuery);
             $stmt->bind_param("s", $username);
             $stmt->execute();

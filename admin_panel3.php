@@ -30,28 +30,28 @@ if (!isset($_SESSION['admin_id'])) {
     <!-- Sign In Form -->
     <section class="text-center content-section masthead" style="background-image:url('assets/img/testing2.jpg');">
         <div class="container mt-4">
-            <h2>User Information - Aim training</h2>
+            <h2>User Information - CPS Game</h2>
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Score</th>
+                        <th>Reaction Score</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $query = "SELECT id, username, score FROM aim_training_scores ORDER BY score DESC";
+                    $query = "SELECT username, score FROM reaction_test_scores ORDER BY score DESC";
                     $result = $conn->query($query);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td>" . $row["username"] . "</td>";
-                            echo "<td>" . $row["score"] . "</td>";
+                            echo "<td>" . $row["score"] . " ms" . "</td>";
                             echo "<td>";
                             echo "<a href='delete_user.php?username=" . $row["username"] . "' class='btn btn-danger btn-sm me-2'>Delete</a>";
-                            echo "<a href='reset_score.php?username=" . $row["username"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset score</a>";
+                            echo "<a href='reset_reaction_score.php?username=" . $row["username"] . "' class='btn btn-warning btn-sm'><i class='bi bi-arrow-clockwise'></i> Reset score</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -63,6 +63,12 @@ if (!isset($_SESSION['admin_id'])) {
             </table>
         </div>
     </section>
+
+    <style>
+        input {
+            margin: 6px;
+        }
+    </style>
     <!-- Bootstrap and custom scripts -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

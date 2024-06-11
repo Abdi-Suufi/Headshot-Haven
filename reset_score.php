@@ -12,7 +12,7 @@ if (!isset($_SESSION['admin_id'])) {
 // Check if username parameter is provided
 if (!isset($_GET['username'])) {
     // Redirect or show an error if username is missing
-    header("Location: admin_panel.php?error=missing_username"); 
+    header("Location: " . $_SERVER['HTTP_REFERER'] . "?error=missing_username"); 
     exit();
 }
 
@@ -25,12 +25,15 @@ $stmt = $conn->prepare($updateQuery);
 $stmt->bind_param("s", $usernameToReset);
 
 if ($stmt->execute()) {
-    // Score reset successfully
-    header("Location: admin_panel.php?success=score_reset"); 
+    // User deleted successfully
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 } else {
-    // Error occurred while resetting the score
-    header("Location: admin_panel.php?error=reset_failed"); 
+    // Rollback the transaction if an error occurred
+    $conn->rollback();
+
+    // Error occurred while deleting the user
+    header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
 

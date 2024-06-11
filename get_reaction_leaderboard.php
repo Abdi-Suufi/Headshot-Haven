@@ -2,7 +2,8 @@
 include('database.php');
 
 // Query to fetch leaderboard data (username and score) for cps scores
-$query = "SELECT username, score FROM reaction_test_scores ORDER BY score DESC LIMIT 10";
+// Ensure that NULL scores are placed at the end of the result set
+$query = "SELECT username, score FROM reaction_test_scores ORDER BY score IS NULL, score ASC LIMIT 10";
 $result = $conn->query($query);
 
 // Check if there are rows returned

@@ -11,6 +11,7 @@
             <ul class="navbar-nav ms-auto" id="nav-bg">
                 <li class="nav-item nav-link"><a class="nav-link" href="admin_panel.php">aim leaderboard</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="admin_panel2.php">cps leaderboard</a></li>
+                <li class="nav-item nav-link"><a class="nav-link" href="admin_panel3.php">Reaction leaderboard</a></li>
                 <li class="nav-item nav-link"><a class="nav-link" href="logout.php">Sign Out</a></li>
             </ul>
         </div>
