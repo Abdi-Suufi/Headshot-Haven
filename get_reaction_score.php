@@ -1,5 +1,7 @@
 <?php
 session_start();
+// Include database connection
+include('database.php');
 
 // Check if the user is logged in using the correct session variable
 if (!isset($_SESSION['username'])) {
@@ -8,13 +10,11 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Include database connection
-include('database.php');
 
 $username = $_SESSION['username'];
 
-// Prepare and execute the SQL query to retrieve the CPS score
-$query = "SELECT score FROM cps_scores WHERE username = ?";
+// Prepare and execute the SQL query to retrieve the reaction test score
+$query = "SELECT score FROM reaction_test_scores WHERE username = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $username);
 $stmt->execute();
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $score = $row['score'] ?? 0; // Current reaction test score, default to 0 if null
     
-    echo json_encode(array('success' => true, 'cpsScore' => $score)); // Return reaction test score
+    echo json_encode(array('success' => true, 'reactionScore' => $score)); // Return reaction test score
 } else {
     echo json_encode(array('success' => false, 'message' => 'User not found'));
 }

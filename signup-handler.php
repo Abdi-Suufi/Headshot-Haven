@@ -48,6 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
+            // Insert default score for the new user into reaction_test_scores table
+            $insertReactionScoreQuery = "INSERT INTO reaction_test_scores (username, score) VALUES (?, 0)";
+            $stmt = $conn->prepare($insertReactionScoreQuery);
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+
             // Set session variables with username and user_id
             $_SESSION['username'] = $username;
             $_SESSION['user_id'] = $userId; 

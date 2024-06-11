@@ -121,9 +121,9 @@ session_start();
             <div class="row">
                 <div class="map-clean text-center">
                     <h2>Personal Best: <span id="CPS-Best">0</span></h2>
-                    <h2>Final CPS: <span id="finalCPS"></span></h2>
-                    <h2>Clicks: <span id="cpsCount"></span></h2>
-                    <h2><span id="cpsTimer">10.0</span> seconds</h2>
+                    <h4>Final CPS: <span id="finalCPS"></span></h4>
+                    <h4>Clicks: <span id="cpsCount"></span></h4>
+                    <h4><span id="cpsTimer">10.0</span> seconds</h4>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="row">
                         <div class="col-lg-7"> <!-- Make the column with the Start CPS Test button wider on larger screens -->
@@ -158,6 +158,68 @@ session_start();
         </div>
     </section>
 
+    <!-- Reaction Speed Test section -->
+    <section id="reaction-speed" class="text-center content-section masthead" style="background-color: black;">
+        <div class="container">
+            <div class="row">
+                <div class="map-clean text-center">
+                    <h2>Reaction Speed Test</h2>
+                    <h4>Reaction Time: <span id="reactionTime">0</span> ms</h4>
+                    <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4> <!-- Display personal best here -->
+                    <canvas id="reactionCanvas" width="1000" height="500"></canvas><br>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="text-end">
+                                <button id="startReactionButton" class="custom-btn">Start Reaction Test</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex justify-content-center">
+                            <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-center content-section masthead" id="reaction-leaderboard" style="background-image:url('assets/img/scene.jpg');">
+        <div class="container">
+            <h2>Reaction Speed Test Leaderboard</h2>
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Score (ms)</th>
+                    </tr>
+                </thead>
+                <tbody id="reactionLeaderboardBody">
+                    <!-- Leaderboard data will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('get_reaction_leaderboard.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const reactionLeaderboardBody = document.getElementById('reactionLeaderboardBody');
+                        data.leaderboard.forEach(entry => {
+                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td></tr>`;
+                            reactionLeaderboardBody.innerHTML += row;
+                        });
+                    } else {
+                        console.error('Failed to fetch leaderboard data:', data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching leaderboard data:', error);
+                });
+        });
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('get_cps_score.php')
@@ -165,7 +227,7 @@ session_start();
                 .then(data => {
                     if (data.success) {
                         const cpsScoreContainer = document.getElementById('CPS-Best');
-                        cpsScoreContainer.innerHTML = `${data.cpsScore}`;
+                        cpsScoreContainer.innerHTML = `${data.cpsScore}` + " CPS";
                     } else {
                         console.error('Failed to fetch CPS score:', data.message);
                     }
@@ -280,7 +342,7 @@ session_start();
             }
         }
     </script>
-
+    <script src="assets/js/reactiontest.js"></script>
     <script src="assets/js/cps.js"></script>
     <?php include('assets/footer.php'); ?>
 
