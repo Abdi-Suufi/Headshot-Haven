@@ -211,9 +211,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
     }
 
+    // Add this function to calculate the accuracy
+    function calculateAccuracy() {
+        return ((successfulClicks / totalClicks) * 100).toFixed(1);
+    }
+
     function sendScoreToServer(score) {
         const data = new FormData();
         data.append('score', score);
+        const accuracy = calculateAccuracy();
+        data.append('accuracy', accuracy); // Add accuracy to the data
 
         fetch('update_score.php', {
             method: 'POST',
@@ -222,7 +229,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log('Score updated successfully');
+                    console.log('Score and accuracy updated successfully');
                     getAndDisplayPersonalBest();
                 }
             })

@@ -17,8 +17,6 @@
                         <li><a class="dropdown-item" href="#leaderboard">Aim Leaderboard</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#weapon-spec">Weapon Spec</a></li>
-                <li class="nav-item"><a class="nav-link" href="#roulette">Roulette</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="cpsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         CPS
@@ -37,6 +35,8 @@
                         <li><a class="dropdown-item" href="#reaction-leaderboard">Reaction Test Leaderboard</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="#weapon-spec">Weapon Spec</a></li>
+                <li class="nav-item"><a class="nav-link" href="#roulette">Roulette</a></li>
                 <?php if (isset($_SESSION['username'])) : ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -83,6 +83,7 @@ session_start();
                     <tr>
                         <th>Player</th>
                         <th>Score</th>
+                        <th>Accuracy</th>
                     </tr>
                 </thead>
                 <tbody id="leaderboardBody">
@@ -90,29 +91,6 @@ session_start();
                 </tbody>
             </table>
         </div>
-    </section>
-
-    <!-- Section to display Weapon Specs table -->
-    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
-        <div class="container">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="center-text">Weapon Specs</h2>
-                <!-- Table for displaying weapon specs -->
-                <div class="table-responsive">
-                    <?php include('get_weapon_spec.php'); ?>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Roulette wheel section -->
-    <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
-        <h2>Switch it up &#128526;</h2>
-        <div class="container">
-            <canvas id="canvas" width="600" height="600"></canvas><br>
-            <a type="button" value="spin" class="custom-btn" id='spin'>Spin</a>
-        </div>
-        <script src="assets/js/roulette.js"></script>
     </section>
 
     <!-- CPS Test section -->
@@ -198,6 +176,29 @@ session_start();
         </div>
     </section>
 
+    <!-- Section to display Weapon Specs table -->
+    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="center-text">Weapon Specs</h2>
+                <!-- Table for displaying weapon specs -->
+                <div class="table-responsive">
+                    <?php include('get_weapon_spec.php'); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roulette wheel section -->
+    <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
+        <h2>Switch it up &#128526;</h2>
+        <div class="container">
+            <canvas id="canvas" width="600" height="600"></canvas><br>
+            <a type="button" value="spin" class="custom-btn" id='spin'>Spin</a>
+        </div>
+        <script src="assets/js/roulette.js"></script>
+    </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('get_reaction_leaderboard.php')
@@ -266,7 +267,7 @@ session_start();
                     if (data.success) {
                         const leaderboardBody = document.getElementById('leaderboardBody');
                         data.leaderboard.forEach(entry => {
-                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td></tr>`;
+                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td><td>${entry.accuracy}%</td></tr>`;
                             leaderboardBody.innerHTML += row;
                         });
                     } else {
@@ -278,6 +279,7 @@ session_start();
                 });
         });
     </script>
+
     <script>
         // Example function to update the score for Aim Training
         function updateAimTrainingScore(score) {

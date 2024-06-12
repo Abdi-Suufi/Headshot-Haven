@@ -13,6 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if username or email already exists
     $checkQuery = "SELECT * FROM users WHERE username = ? OR email = ?";
     $stmt = $conn->prepare($checkQuery);
+    if (!$stmt) {
+        $_SESSION['signup_error'] = "Error preparing statement: " . $conn->error;
+        header("Location: signup.php");
+        exit();
+    }
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -29,6 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare and bind the SQL statement to insert into users table
         $insertQuery = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($insertQuery);
+        if (!$stmt) {
+            $_SESSION['signup_error'] = "Error preparing statement: " . $conn->error;
+            header("Location: signup.php");
+            exit();
+        }
         $stmt->bind_param("sss", $username, $email, $hashed_password);
 
         // Execute the statement
@@ -37,20 +47,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userId = $conn->insert_id;
 
             // Insert default score for the new user into aim_training_scores table
-            $insertAimTrainingScoreQuery = "INSERT INTO aim_training_scores (username, score) VALUES (?, 0)";
+            $insertAimTrainingScoreQuery = "INSERT INTO aim_training_scores (username, score, accuracy, created_at) VALUES (?, 0, 0, NOW())";
             $stmt = $conn->prepare($insertAimTrainingScoreQuery);
+            if (!$stmt) {
+                $_SESSION['signup_error'] = "Error preparing statement: " . $conn->error;
+                header("Location: signup.php");
+                exit();
+            }
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
             // Insert default score for the new user into cps_scores table
             $insertCpsScoreQuery = "INSERT INTO cps_scores (username, score) VALUES (?, 0)";
             $stmt = $conn->prepare($insertCpsScoreQuery);
+            if (!$stmt) {
+                $_SESSION['signup_error'] = "Error preparing statement: " . $conn->error;
+                header("Location: signup.php");
+                exit();
+            }
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
             // Insert default score for the new user into reaction_test_scores table
             $insertReactionScoreQuery = "INSERT INTO reaction_test_scores (username, score) VALUES (?, null)";
             $stmt = $conn->prepare($insertReactionScoreQuery);
+            if (!$stmt) {
+                $_SESSION['signup_error'] = "Error preparing statement: " . $conn->error;
+                header("Location: signup.php");
+                exit();
+            }
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
