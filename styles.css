@@ -14,8 +14,6 @@
   display: table;
 }
 
-
-
 table {
   max-width: 100%;
 }
@@ -54,7 +52,7 @@ td {
   margin: 0 auto;
   display: block;
 }
-  
+
 .navbar.fixed-top.scrolled {
   background-color: orange;
 }
@@ -118,7 +116,6 @@ header.masthead {
 
 /* Mobile specific styling */
 @media (max-width: 768px) {
-
   #aim-training,
   #cps {
     height: auto;
@@ -129,7 +126,6 @@ header.masthead {
   #cps canvas {
     width: 100%;
     height: auto;
-
   }
 
   #cpsCanvas {
@@ -153,7 +149,6 @@ header.masthead {
 }
 
 @media screen and (max-width: 768px) {
-
   /* Adjust font size for smaller screens */
   #weapon-spec table {
     font-size: 12px;
@@ -239,7 +234,7 @@ header.masthead {
 
 @media (max-width: 600px) {
   #canvas {
-      max-width: 300px;
+    max-width: 300px;
   }
 }
 
@@ -255,9 +250,9 @@ header.masthead {
 /* Adjust video for smaller screens */
 @media (max-width: 768px) {
   #header-video {
-      height: 100%;
-      max-width: none;
-      width: 100%;
+    height: 100%;
+    max-width: none;
+    width: 100%;
   }
 }
 
@@ -284,8 +279,8 @@ header.masthead {
   border-color: rgba(178, 69, 46, 0.6); /* Updated border color */
   background: linear-gradient(
     to bottom,
-    rgba(255, 100, 66, 0.2), /* Updated gradient colors */
-    rgba(255, 100, 66, 0.3),
+    rgba(255, 100, 66, 0.2),
+    /* Updated gradient colors */ rgba(255, 100, 66, 0.3),
     rgba(255, 100, 66, 0.4)
   );
   box-shadow: 0 6px rgba(178, 69, 46, 0.6); /* Updated shadow color */
@@ -305,44 +300,93 @@ header.masthead {
 /* Ensure the section adjusts for smaller screens */
 @media (max-width: 768px) {
   #reaction-speed .map-clean {
-      padding: 20px;
+    padding: 20px;
   }
 
-  #reaction-speed h2, #reaction-speed h4 {
-      font-size: 1.2em;
+  #reaction-speed h2,
+  #reaction-speed h4 {
+    font-size: 1.2em;
   }
 
   #reactionCanvas {
-      width: 100% !important;
-      height: auto !important;
+    width: 100% !important;
+    height: auto !important;
   }
 
   #reaction-speed .custom-btn {
-      font-size: 1em;
-      padding: 10px 20px;
+    font-size: 1em;
+    padding: 10px 20px;
   }
 
   #reaction-speed .custom-icon {
-      font-size: 28px;
+    font-size: 28px;
   }
 }
 
 /* Additional adjustments for very small screens */
 @media (max-width: 480px) {
   #reaction-speed h2 {
-      font-size: 1em;
+    font-size: 1em;
   }
 
   #reaction-speed h4 {
-      font-size: 0.9em;
+    font-size: 0.9em;
   }
 
   #reaction-speed .custom-btn {
-      font-size: 0.9em;
-      padding: 8px 15px;
+    font-size: 0.9em;
+    padding: 8px 15px;
   }
 
   #reaction-speed .custom-icon {
-      font-size: 24px;
+    font-size: 24px;
   }
+}
+
+/* Remove table width for responsive behavior */
+table {
+  width: 100%;
+}
+
+/* Set font sizes for different screen sizes using media queries */
+@media (max-width: 768px) {
+  /* Mobile styles */
+  table {
+    font-size: 0.8em;
+    /* Adjust font size for mobile */
+  }
+
+  th,
+  td {
+    padding: 8px;
+    /* Adjust padding for mobile */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  /* Tablet styles (optional) */
+  table {
+    font-size: 0.9em;
+    /* Adjust font size for tablets */
+  }
+}
+
+@media (min-width: 992px) {
+  /* Desktop styles */
+  table {
+    font-size: 1em;
+    /* Adjust font size for desktop */
+  }
+}
+
+/* Target even rows using nth-child selector and override background-color */
+#weapons-table tbody tr:nth-child(even),
+#weapons-table thead tr:nth-child(odd) {
+  background-color: rgb(178, 69, 46);
+  /* Dark orange */
+}
+
+/* Target odd rows (including headers) using nth-child selector and override background-color */
+#weapons-table tbody tr:nth-child(odd) {
+  background-color: rgb(255, 100, 66); /* Orange */
 }

@@ -54,7 +54,8 @@ session_start();
                                 </svg>
                             </a>
                             <input type="file" id="crosshair-upload" class="custom-btn" accept=".cur" style="display: none;">
-                            <a href="http://www.rw-designer.com/gallery?search=crosshair" target="_blank" class="custom-file-upload text-black" style="text-decoration: none; margin-top: 2px; margin-left: 8px;">Find crosshairs here</a>
+                            <a href="http://www.rw-designer.com/gallery?search=crosshair" target="_blank" class="custom-file-upload text-black" style="text-decoration: none; margin-top: 2px; margin-left: 8px;">Find crosshairs
+                                here</a>
                         </div>
                         <div class="col">
                             <button id="startButton" class="custom-btn">Start Game</button>
@@ -104,12 +105,15 @@ session_start();
                     <h4><span id="cpsTimer">10.0</span> seconds</h4>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="row">
-                        <div class="col-lg-7"> <!-- Make the column with the Start CPS Test button wider on larger screens -->
-                            <div class="text-end"> <!-- Align the Start CPS Test button to the right side -->
+                        <div class="col-lg-7">
+                            <!-- Make the column with the Start CPS Test button wider on larger screens -->
+                            <div class="text-end">
+                                <!-- Align the Start CPS Test button to the right side -->
                                 <button id="startCPSButton" class="custom-btn">Start CPS Test</button>
                             </div>
                         </div>
-                        <div class="col-lg-4 d-flex justify-content-center"> <!-- Make the column with the icons smaller on larger screens -->
+                        <div class="col-lg-4 d-flex justify-content-center">
+                            <!-- Make the column with the icons smaller on larger screens -->
                             <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; margin-right: 8px;"></i>
                             <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
                         </div>
@@ -137,28 +141,28 @@ session_start();
     </section>
 
     <!-- Reaction Speed Test section -->
-<section id="reaction-speed" class="text-center content-section masthead" style="background-color: black;">
-    <div class="container">
-        <div class="row">
-            <div class="map-clean text-center">
-                <h2>Reaction Speed Test</h2>
-                <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4>
-                <div class="canvas-wrapper">
-                    <canvas id="reactionCanvas" width="1000" height="500"></canvas>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-7 col-12 text-end mb-2 mb-lg-0">
-                        <button id="startReactionButton" class="custom-btn">Start Reaction Test</button>
+    <section id="reaction-speed" class="text-center content-section masthead" style="background-color: black;">
+        <div class="container">
+            <div class="row">
+                <div class="map-clean text-center">
+                    <h2>Reaction Speed Test</h2>
+                    <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4>
+                    <div class="canvas-wrapper">
+                        <canvas id="reactionCanvas" width="1000" height="500"></canvas>
                     </div>
-                    <div class="col-lg-4 col-12 d-flex justify-content-center">
-                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-7 col-12 text-end mb-2 mb-lg-0">
+                            <button id="startReactionButton" class="custom-btn">Start Reaction Test</button>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex justify-content-center">
+                            <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="text-center content-section masthead" id="reaction-leaderboard" style="background-image:url('assets/img/scene.jpg');">
         <div class="container">
@@ -177,19 +181,30 @@ session_start();
         </div>
     </section>
 
-    <!-- Section to display Weapon Specs table -->
     <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
         <div class="container">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="center-text">Weapon Specs</h2>
-                <!-- Table for displaying weapon specs -->
-                <div class="table-responsive">
-                    <?php include('get_weapon_spec.php'); ?>
-                </div>
-            </div>
+            <h1 class="mt-4">Valorant Weapons</h1>
+            <table id="weapons-table">
+                <thead>
+                    <tr>
+                        <th>Icon</th>
+                        <th>Name</th>
+                        <th>Head Damage</th>
+                        <th>Body Damage</th>
+                        <th>Leg Damage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </section>
 
+    <style>
+        
+    </style>
+
+    <script src="assets/js/weaponstats.js"></script>
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
         <h2>Switch it up &#128526;</h2>
@@ -268,7 +283,8 @@ session_start();
                     if (data.success) {
                         const leaderboardBody = document.getElementById('leaderboardBody');
                         data.leaderboard.forEach(entry => {
-                            const row = `<tr><td>${entry.username}</td><td>${entry.score}</td><td>${entry.accuracy}%</td></tr>`;
+                            const row =
+                                `<tr><td>${entry.username}</td><td>${entry.score}</td><td>${entry.accuracy}%</td></tr>`;
                             leaderboardBody.innerHTML += row;
                         });
                     } else {
