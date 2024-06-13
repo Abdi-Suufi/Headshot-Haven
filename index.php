@@ -189,6 +189,7 @@ session_start();
                     <tr>
                         <th>Icon</th>
                         <th>Name</th>
+                        <th>Price</th>
                         <th>Head Damage</th>
                         <th>Body Damage</th>
                         <th>Leg Damage</th>
