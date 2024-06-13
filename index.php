@@ -137,27 +137,28 @@ session_start();
     </section>
 
     <!-- Reaction Speed Test section -->
-    <section id="reaction-speed" class="text-center content-section masthead" style="background-color: black;">
-        <div class="container">
-            <div class="row">
-                <div class="map-clean text-center">
-                    <h2>Reaction Speed Test</h2>
-                    <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4> <!-- Display personal best here -->
-                    <canvas id="reactionCanvas" width="1000" height="500"></canvas><br>
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="text-end">
-                                <button id="startReactionButton" class="custom-btn">Start Reaction Test</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 d-flex justify-content-center">
-                            <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
-                        </div>
+<section id="reaction-speed" class="text-center content-section masthead" style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="map-clean text-center">
+                <h2>Reaction Speed Test</h2>
+                <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4>
+                <div class="canvas-wrapper">
+                    <canvas id="reactionCanvas" width="1000" height="500"></canvas>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-7 col-12 text-end mb-2 mb-lg-0">
+                        <button id="startReactionButton" class="custom-btn">Start Reaction Test</button>
+                    </div>
+                    <div class="col-lg-4 col-12 d-flex justify-content-center">
+                        <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange;"></i>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="text-center content-section masthead" id="reaction-leaderboard" style="background-image:url('assets/img/scene.jpg');">
         <div class="container">
