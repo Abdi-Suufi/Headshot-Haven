@@ -362,3 +362,7 @@ th,td {
 .custom-table tbody tr:nth-child(odd) {
   background-color: rgb(255, 100, 66); /* Orange */
 }
+
+.custom-table tbody tr:hover {
+  background-color: #c07300; /* Light gray hover color */
+}
