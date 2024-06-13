@@ -303,49 +303,21 @@ header.masthead {
     padding: 20px;
   }
 
-  #reaction-speed h2,
-  #reaction-speed h4 {
-    font-size: 1.2em;
-  }
-
   #reactionCanvas {
     width: 100% !important;
     height: auto !important;
-  }
-
-  #reaction-speed .custom-btn {
-    font-size: 1em;
-    padding: 10px 20px;
-  }
-
-  #reaction-speed .custom-icon {
-    font-size: 28px;
-  }
-}
-
-/* Additional adjustments for very small screens */
-@media (max-width: 480px) {
-  #reaction-speed h2 {
-    font-size: 1em;
-  }
-
-  #reaction-speed h4 {
-    font-size: 0.9em;
-  }
-
-  #reaction-speed .custom-btn {
-    font-size: 0.9em;
-    padding: 8px 15px;
-  }
-
-  #reaction-speed .custom-icon {
-    font-size: 24px;
   }
 }
 
 /* Remove table width for responsive behavior */
 table {
   width: 100%;
+}
+
+th,td {
+  padding: 10px;
+  border: 2px solid rgb(54, 54, 54);
+  border-radius: 6px;
 }
 
 /* Set font sizes for different screen sizes using media queries */
@@ -380,13 +352,13 @@ table {
 }
 
 /* Target even rows using nth-child selector and override background-color */
-#weapons-table tbody tr:nth-child(even),
-#weapons-table thead tr:nth-child(odd) {
+.custom-table tbody tr:nth-child(even),
+.custom-table thead tr:nth-child(odd) {
   background-color: rgb(178, 69, 46);
   /* Dark orange */
 }
 
 /* Target odd rows (including headers) using nth-child selector and override background-color */
-#weapons-table tbody tr:nth-child(odd) {
+.custom-table tbody tr:nth-child(odd) {
   background-color: rgb(255, 100, 66); /* Orange */
 }

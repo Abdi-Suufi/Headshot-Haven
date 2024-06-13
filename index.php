@@ -79,7 +79,7 @@ session_start();
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/ai.jpg');">
         <div class="container">
             <h2>Aim Leaderboard</h2>
-            <table class="table table-striped table-dark">
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>Player</th>
@@ -126,7 +126,7 @@ session_start();
     <section class="text-center content-section masthead" id="cpsleaderboard" style="background-image:url('assets/img/orange-typo.jpg');">
         <div class="container">
             <h2>CPS Leaderboard</h2>
-            <table class="table table-striped table-dark">
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>Player</th>
@@ -167,7 +167,7 @@ session_start();
     <section class="text-center content-section masthead" id="reaction-leaderboard" style="background-image:url('assets/img/scene.jpg');">
         <div class="container">
             <h2>Reaction Speed Test Leaderboard</h2>
-            <table class="table table-striped table-dark">
+            <table class="custom-table">
                 <thead>
                     <tr>
                         <th>Player</th>
@@ -184,7 +184,7 @@ session_start();
     <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
         <div class="container">
             <h1 class="mt-4">Valorant Weapons</h1>
-            <table id="weapons-table">
+            <table id="weapons-table" class="custom-table">
                 <thead>
                     <tr>
                         <th>Icon</th>
@@ -201,10 +201,9 @@ session_start();
     </section>
 
     <style>
-        
+
     </style>
 
-    <script src="assets/js/weaponstats.js"></script>
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
         <h2>Switch it up &#128526;</h2>
@@ -362,6 +361,7 @@ session_start();
     </script>
     <script src="assets/js/reactiontest.js"></script>
     <script src="assets/js/cps.js"></script>
+    <script src="assets/js/weaponstats.js"></script>
     <?php include('assets/footer.php'); ?>
 
     <!--Bugs out if its in the head tag idk why-->
