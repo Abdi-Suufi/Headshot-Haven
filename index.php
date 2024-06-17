@@ -193,7 +193,7 @@ session_start();
         </div>
     </section>
 
-    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: white;">
+    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
         <div class="container">
             <div id="section-title">
                 <h2>Valorant Weapons</h2>
