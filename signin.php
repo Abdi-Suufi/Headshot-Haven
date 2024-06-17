@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/btn/styles.css">
 </head>
+<style>
+    .masthead {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    }
+</style>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
     <!-- Navbar -->

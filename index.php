@@ -41,9 +41,11 @@ session_start();
             </video>
             <div class="row">
                 <div class="map-clean text-center">
-                    <h2>Personal Best: <span id="personalBest">0</span></h2>
-                    <h4 id="accuracy">Accuracy: 0%</h4>
-                    <h4><span id="timer">30.0</span> seconds</h4>
+                    <div id="section-title">
+                        <h2>Personal Best: <span id="personalBest">0</span></h2>
+                        <h4 id="accuracy">Accuracy: 0%</h4>
+                        <h4><span id="timer">30.0</span> seconds</h4>
+                    </div>
                     <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
                     <div class="row">
                         <div class="col" style="display: flex; align-items: center;">
@@ -78,7 +80,9 @@ session_start();
 
     <section class="text-center content-section masthead" id="leaderboard" style="background-image:url('assets/img/ai.jpg');">
         <div class="container">
-            <h2>Aim Leaderboard</h2>
+            <div id="section-title">
+                <h2 id=>Aim Leaderboard</h2>
+            </div>
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -99,10 +103,12 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
-                    <h2>Personal Best: <span id="CPS-Best">0</span></h2>
-                    <h4>Final CPS: <span id="finalCPS"></span></h4>
-                    <h4>Clicks: <span id="cpsCount"></span></h4>
-                    <h4><span id="cpsTimer">10.0</span> seconds</h4>
+                    <div id="section-title">
+                        <h2>Personal Best: <span id="CPS-Best">0</span></h2>
+                        <h4>Final CPS: <span id="finalCPS"></span></h4>
+                        <h4>Clicks: <span id="cpsCount"></span></h4>
+                        <h4><span id="cpsTimer">10.0</span> seconds</h4>
+                    </div>
                     <canvas id="cpsCanvas" width="1000" height="500"></canvas><br>
                     <div class="row">
                         <div class="col-lg-7">
@@ -125,7 +131,9 @@ session_start();
 
     <section class="text-center content-section masthead" id="cpsleaderboard" style="background-image:url('assets/img/orange-typo.jpg');">
         <div class="container">
-            <h2>CPS Leaderboard</h2>
+            <div id="section-title">
+                <h2>CPS Leaderboard</h2>
+            </div>
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -145,8 +153,10 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="map-clean text-center">
-                    <h2>Reaction Speed Test</h2>
-                    <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4>
+                    <div id="section-title">
+                        <h2>Reaction Speed Test</h2>
+                        <h4>Personal Best: <span id="reaction-Best">0</span> ms</h4>
+                    </div>
                     <div class="canvas-wrapper">
                         <canvas id="reactionCanvas" width="1000" height="500"></canvas>
                     </div>
@@ -166,7 +176,9 @@ session_start();
 
     <section class="text-center content-section masthead" id="reaction-leaderboard" style="background-image:url('assets/img/scene.jpg');">
         <div class="container">
-            <h2>Reaction Speed Test Leaderboard</h2>
+            <div id="section-title">
+                <h2>Reaction Speed Test Leaderboard</h2>
+            </div>
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -181,9 +193,11 @@ session_start();
         </div>
     </section>
 
-    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: black;">
+    <section class="text-center content-section masthead" id="weapon-spec" style="height: 700px; background-color: white;">
         <div class="container">
-            <h1 class="mt-4">Valorant Weapons</h1>
+            <div id="section-title">
+                <h2>Valorant Weapons</h2>
+            </div>
             <table id="weapons-table" class="custom-table">
                 <thead>
                     <tr>
@@ -207,8 +221,10 @@ session_start();
 
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
-        <h2>Switch it up &#128526;</h2>
         <div class="container">
+            <div id="section-title">
+                <h2>Switch it up &#128526;</h2>
+            </div>
             <canvas id="canvas" width="600" height="600"></canvas><br>
             <a type="button" value="spin" class="custom-btn" id='spin'>Spin</a>
         </div>

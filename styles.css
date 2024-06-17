@@ -151,7 +151,7 @@ header.masthead {
 @media screen and (max-width: 768px) {
   /* Adjust font size for smaller screens */
   #weapon-spec table {
-    font-size: 12px;
+    font-size: 10px;
     /* Adjust this value as needed */
   }
 }
@@ -296,6 +296,19 @@ header.masthead {
   background-color: rgb(24, 24, 24);
   border-radius: 10px;
 }
+
+#section-title {
+            display: inline-block;
+            color: rgb(255, 100, 66);
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(24, 24, 24);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        h2, h4 {
+            margin: 0;
+        }
 
 /* Ensure the section adjusts for smaller screens */
 @media (max-width: 768px) {
