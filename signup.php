@@ -45,18 +45,26 @@
                             unset($_SESSION['signup_error']);
                         }
                         ?>
-                        <form action="signup-handler.php" method="post" class="text-center">
+                        <form action="signup-handler.php" method="post" class="text-center" onsubmit="return validateForm()">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input class="form-control" type="text" name="username" placeholder="Username" required>
+                                <input class="form-control" type="text" name="username" id="username" placeholder="Username" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input class="form-control" type="email" name="email" placeholder="Email" required>
+                                <input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_email">Confirm Email</label>
+                                <input class="form-control" type="email" name="confirm_email" id="confirm_email" placeholder="Confirm Email" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input class="form-control" type="password" name="password" placeholder="Password" required>
+                                <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                             </div>
                             <button class="btn-23" type="submit">
                                 <span class="text">Sign-Up</span>
@@ -68,7 +76,26 @@
             </div>
         </div>
     </section>
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            var confirmEmail = document.getElementById("confirm_email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
 
+            if (email !== confirmEmail) {
+                alert("Emails do not match!");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     <style>
         input {
             margin: 6px;
