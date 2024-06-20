@@ -18,6 +18,12 @@
         background-repeat: no-repeat;
         min-height: 100vh;
     }
+
+    form.text-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 </style>
 
 
@@ -39,7 +45,7 @@
                             unset($_SESSION['signup_error']);
                         }
                         ?>
-                        <form action="signup-handler.php" method="post">
+                        <form action="signup-handler.php" method="post" class="text-center">
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input class="form-control" type="text" name="username" placeholder="Username" required>

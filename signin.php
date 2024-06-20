@@ -17,6 +17,12 @@
         background-repeat: no-repeat;
         min-height: 100vh;
     }
+
+    form.text-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 </style>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
@@ -39,7 +45,7 @@
                             unset($_SESSION['signin_error']);
                         }
                         ?>
-                        <form action="signin-handler.php" method="POST">
+                        <form action="signin-handler.php" method="POST" class="text-center">
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
@@ -48,9 +54,11 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                             </div>
-                            <div class="form-check">
+                            <div class="form-group text-left">
                                 <input type="checkbox" class="form-check-input" id="is_admin" name="is_admin" value="1">
-                                <label class="form-check-label" for="is_admin" style="float: left;">Admin Login</label>
+                                <label class="form-check-label" for="is_admin">Admin Login</label>
+                            </div>
+                            <div class="form-group">
                                 <button class="btn-23" type="submit">
                                     <span class="text">Sign-In</span>
                                     <span aria-hidden="" class="marquee">Sign-In</span>
