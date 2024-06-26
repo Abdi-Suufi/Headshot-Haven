@@ -63,4 +63,4 @@ jobs:
           app-name: 'Headshot-Haven'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_52C2E53E90CB494BB0E53F207BCCA1FC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F44855625F7B46D396A902866CABAAD9 }}
