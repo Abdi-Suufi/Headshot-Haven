@@ -1,9 +1,9 @@
 <?php
 // Database connection parameters
-$host = 'headshot-haven.database.windows.net';
-$username = 'headshot-haven';
-$password = 'Admin-312';
-$database = 'Headshot-Haven';
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'valorant_data';
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
