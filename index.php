@@ -48,29 +48,29 @@ session_start();
                     </div>
                     <canvas id="gameCanvas" width="1300" height="650"></canvas><br>
                     <div class="row">
-                        <div class="col" style="display: flex; align-items: center;">
-                            <span style="margin-right: 8px;">Upload Crosshair:</span>
-                            <a id="file-btn">
-                                <svg viewBox="0 0 256 256" height="32" width="38" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M74.34 85.66a8 8 0 0 1 11.32-11.32L120 108.69V24a8 8 0 0 1 16 0v84.69l34.34-34.35a8 8 0 0 1 11.32 11.32l-48 48a8 8 0 0 1-11.32 0ZM240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h52.4a4 4 0 0 1 2.83 1.17L111 145a24 24 0 0 0 34 0l23.8-23.8a4 4 0 0 1 2.8-1.2H224a16 16 0 0 1 16 16m-40 32a12 12 0 1 0-12 12a12 12 0 0 0 12-12" fill="currentColor"></path>
-                                </svg>
-                            </a>
-                            <input type="file" id="crosshair-upload" class="custom-btn" accept=".cur" style="display: none;">
-                            <a href="http://www.rw-designer.com/gallery?search=crosshair" target="_blank" class="custom-file-upload text-black" style="text-decoration: none; margin-top: 2px; margin-left: 8px;">Find crosshairs
-                                here</a>
-                        </div>
-                        <div class="col">
-                            <button id="startButton" class="custom-btn">Start Game</button>
-                        </div>
-                        <div class="col" style="display: flex; justify-content: flex-end;">
-                            <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; cursor: pointer; margin-right: 6px;"></i>
-                            <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange; cursor: pointer;"></i>
-                        </div>
+                            <div class="row align-items-center">
+                                <!-- Align crosshair input and generate button -->
+                                <div class="col-auto">
+                                    <input type="text" id="crosshairCode" placeholder="Enter Crosshair Code" class="form-control" style="max-width: 200px;">
+                                </div>
+                                <div class="col-auto">
+                                    <button id="generateBtn" class="btn btn-warning">Generate Crosshair</button>
+                                </div>
+                                <div class="col text-center">
+                                    <button id="startButton" class="custom-btn">Start Game</button>
+                                </div>
+                                <div class="col text-center">
+                                    <!-- Reset and Fullscreen buttons aligned close together -->
+                                    <i class="fas fa-sync-alt custom-icon" onclick="location.reload()" title="Refresh" style="font-size: 36px; color: orange; cursor: pointer; margin-right: 10px;"></i>
+                                    <i id="fullScreenButton" class="fas fa-expand custom-icon" onclick="toggleFullScreen()" title="Full Screen" style="font-size: 36px; color: orange; cursor: pointer;"></i>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <script>
         document.getElementById('file-btn').addEventListener('click', function() {
             document.getElementById('crosshair-upload').click();
@@ -215,9 +215,55 @@ session_start();
         </div>
     </section>
 
-    <style>
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', async function() {
+            const code = document.getElementById('crosshairCode').value;
 
-    </style>
+            try {
+                const formData = new FormData();
+                formData.append('code', code);
+
+                const response = await fetch('generate_crosshair.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const imgUrl = URL.createObjectURL(blob);
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+
+                    // Change the cursor to the generated crosshair
+                    const cursorSize = 128; // or any size appropriate for your crosshair
+                    const resizedImgUrl = await resizeImage(imgUrl, cursorSize, cursorSize);
+                    const gameCanvas = document.getElementById('gameCanvas');
+                    gameCanvas.style.cursor = `url(${resizedImgUrl}) ${cursorSize/2} ${cursorSize/2}, auto`;
+                } else {
+                    const error = await response.json();
+                    console.error('Error generating crosshair:', error.message);
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+        });
+
+        async function resizeImage(url, width, height) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.src = url;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    resolve(canvas.toDataURL('image/png'));
+                };
+                img.onerror = reject;
+            });
+        }
+    </script>
 
     <!-- Roulette wheel section -->
     <section class="text-center content-section masthead" id="roulette" style="background-image:url('assets/img/orange4.jpg')">
