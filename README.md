@@ -1,4 +1,4 @@
-# <a href="https://headshot-haven.000webhostapp.com" target="_blank">Headshot Haven</a>
+# <a href="https://headshot-haven.co.uk" target="_blank">Headshot Haven</a>
 
 ## Table of Contents
 - [Overview](#overview)
@@ -14,8 +14,9 @@
 Headshot Haven is a web application designed to help users improve their aiming skills through various interactive games and tools. The platform includes features like aim training, CPS (Clicks Per Second) tests, leaderboards, and more.
 
 ## Features
-- Aim Training Module
-- CPS Game and Leaderboard
+- Aim Training Game
+- CPS Game
+- Reaction Speed Game
 - Weapon Specifications
 - Roulette Game
 - User Authentication (Sign Up/Sign In)
@@ -29,6 +30,7 @@ Headshot Haven is a web application designed to help users improve their aiming 
 - **Backend:**
   - PHP
   - MySQL/PHPmyAdmin
+  - Node.js
 - **Other:**
   - Apache (Web Server)
 
@@ -66,34 +68,40 @@ To set up the project locally, follow these steps:
 
 ## Screenshots
 ### Header Section:
-![Image of Hero section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/main.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/01741025-005f-44f2-b7c2-624bbeeeb152)
 
 ### Aim-training Section:
-![Image of Aim-training section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/aim-training.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/eae04a5c-349d-469e-a530-a37a8fe2e8ec)
 
 ### Aim-training Leaderboard Section:
-![Image of Aim-training Leaderboard section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/aim-leaderboard.png)
-
-### Weapon Specification Section:
-![Image of weapon-spec section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/weapon-spec.png)
-
-### Roulette Section:
-![Image of weapon roulette section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/roulette.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/756c66f5-ddb0-4fdb-8a9e-8b8dcc5a5060)
 
 ### Cps Section:
-![Image of cps game section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/cps-game.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/368b6a6c-9e7b-4e3d-b217-5e81979edf2e)
 
 ### Cps leaderboard Section:
-![Image of cps game leaderboard section](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/cps-leaderboard.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/9992272a-9a09-43a9-9540-e86958a81837)
+
+### Reaction Speed Section:
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/026e6d50-7da4-43da-afe6-55ac82566b4f)
+
+### Reaction Leaderboard:
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/2ddafa34-1d63-4333-a396-e7767c6a7655)
+
+### Weapon Specification Section:
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/33ace2f1-97a3-4f0a-8300-3618f19ce9f2)
+
+### Roulette Section:
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/12c87ba3-e607-4426-80b3-0d3addfce43d)
 
 ### Signin Page:
-![Image of signin page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/signin.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/39c43a14-871a-43a5-ba92-c02fd92d763b)
 
 ### Signup Page:
-![Image of signup page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/signup.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/17dbca5e-c539-4f1f-8b8c-654ce402bd6a)
 
 ### Admin Page:
-![Image of Admin page](https://github.com/Abdi-Suufi/Headshot-Haven/blob/Assets/images/admin-page.png)
+![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/5f951787-72bb-4830-82e3-5804d323b2d0)
 
 ## Contributing
 If you would like to contribute to this project, please follow these steps:
