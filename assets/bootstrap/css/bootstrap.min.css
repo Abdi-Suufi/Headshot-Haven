@@ -14106,7 +14106,7 @@ a:hover {
 #mainNav .navbar-nav .nav-item:active,
 #mainNav .navbar-nav .nav-item:focus {
     outline: none;
-    background-color: blue;
+    background-color: rgb(178, 69, 46);
 }
 
 @media(min-width: 992px) {
