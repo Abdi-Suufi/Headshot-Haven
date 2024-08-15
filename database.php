@@ -1,9 +1,17 @@
 <?php
-// Database connection parameters
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'valorant_data';
+require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+// Load .env file
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Database connection parameters from .env
+$host = getenv('DB_HOST');
+$username = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_DATABASE');
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
@@ -12,4 +20,5 @@ $conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-?>
+
+echo "Connected successfully";
