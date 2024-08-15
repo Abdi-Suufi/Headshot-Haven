@@ -1,0 +1,17 @@
+# Ignore environment variable files
+.env
+
+# Ignore composer files
+/vendor
+
+# Ignore node modules if you have a frontend
+/node_modules
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore system files
+.DS_Store
+Thumbs.db
