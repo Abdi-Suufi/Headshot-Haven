@@ -14,6 +14,7 @@ session_start();
     <script src="assets/js/aimtraining.js"></script>
     <!--icon for few arrows im using-->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/btn/styles.css">
 </head>
 
 <body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
