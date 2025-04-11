@@ -22,7 +22,7 @@ Headshot Haven is a web application designed to help users improve their aiming 
 - User Authentication (Sign Up/Sign In)
 - Admin Panel for managing users and scores
 
-## Technologies Used
+## Technologies Used 
 - **Frontend:**
   - HTML
   - CSS (Bootstrap)
