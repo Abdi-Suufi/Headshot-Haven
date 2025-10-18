@@ -8,10 +8,10 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 // Database connection parameters from .env
-$host = getenv('DB_HOST');
-$username = getenv('DB_USERNAME');
-$password = getenv('DB_PASSWORD');
-$database = getenv('DB_DATABASE');
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'valorant_data';
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
