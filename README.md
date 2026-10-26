@@ -2,6 +2,8 @@
 
 **Train your aim in your browser.** No downloads, no sign-up needed. Open the site and play.
 
+### ▶️ [Play now at frontend-three-coral-87.vercel.app](https://frontend-three-coral-87.vercel.app)
+
 Headshot Haven is an aim trainer for people who play first-person shooters like Valorant, CS2, Overwatch or Fortnite. It helps you get faster and more accurate, and shows you how you're improving over time.
 
 ---
@@ -37,7 +39,7 @@ How many times can you click in 5 or 10 seconds? Find out your clicks per second
 
 ## How to play
 
-1. Pick a game from the home page.
+1. Open the [website](https://frontend-three-coral-87.vercel.app) and pick a game from the home page.
 2. Press **Start** (or the Space bar).
 3. In the 3D arena, your mouse controls where you look and clicking shoots.
 4. Press **Esc** to pause or **R** to restart instantly.
@@ -46,24 +48,11 @@ How many times can you click in 5 or 10 seconds? Find out your clicks per second
 
 ---
 
-## Running it on your own computer
+## Ready to play?
 
-You'll need [Node.js](https://nodejs.org) installed. Then, in this folder, run:
+**[Open Headshot Haven →](https://frontend-three-coral-87.vercel.app)**
 
-```bash
-npm run install:all
-npm run dev
-```
-
-Open **http://localhost:3000** in your browser and start playing.
-
-Accounts and leaderboards also need a free MongoDB database. To set that up, copy `backend/.env.example` to `backend/.env` and fill it in.
-
----
-
-## Built with
-
-React and Three.js for the website and 3D graphics, plus Node.js, Express and MongoDB for accounts and leaderboards.
+Works on any modern browser on desktop, laptop or phone. For the best experience, use a mouse on a computer.
 
 ---
 

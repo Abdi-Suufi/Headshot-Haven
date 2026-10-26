@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { recordRun } from '../lib/stats';
+import { linkRunToServer, recordRun } from '../lib/stats';
 import { api } from '../lib/api';
 import { useAuth } from '../contexts/AuthContext';
 import { sound } from '../lib/audio';
@@ -30,6 +30,7 @@ export function useRunRecorder() {
       setRemote({ state: 'saving' });
       try {
         const res = await api.submitScore(game, { score, variant, gameData: data });
+        linkRunToServer(result.run.id, res.score.id);
         setRemote({ state: 'saved', rank: res.rank, best: res.userBest });
       } catch (err) {
         setRemote({ state: 'error', message: err.message });

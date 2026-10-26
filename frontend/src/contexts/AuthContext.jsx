@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { api, getToken, setToken } from '../lib/api';
+import { importGuestRuns, mergeRuns, runFromServer, setHistoryOwner } from '../lib/stats';
 
 const AuthContext = createContext(null);
 
@@ -45,6 +46,23 @@ export function AuthProvider({ children }) {
     };
   }, [loadUser]);
 
+  // Each account sees only its own runs; on sign-in, pull its past runs from the server too.
+  const userId = user?.id ?? null;
+  useEffect(() => {
+    setHistoryOwner(userId);
+    if (!userId) return undefined;
+    let cancelled = false;
+    api
+      .history(100)
+      .then(({ history }) => {
+        if (!cancelled) mergeRuns(history.map(runFromServer));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
   const login = useCallback(async (email, password) => {
     const res = await api.login(email, password);
     setToken(res.token);
@@ -55,6 +73,9 @@ export function AuthProvider({ children }) {
   const register = useCallback(async (username, email, password) => {
     const res = await api.register(username, email, password);
     setToken(res.token);
+    // A brand-new account keeps whatever was played as a guest just before signing up.
+    setHistoryOwner(res.user.id);
+    importGuestRuns();
     setUser(res.user);
     return res.user;
   }, []);

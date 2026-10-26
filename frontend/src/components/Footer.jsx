@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <b>Headshot Haven</b>
-          <span className="muted">Browser FPS aim trainer · React · Three.js · Express · MongoDB</span>
+          <span className="muted">Free aim training in your browser</span>
         </div>
         <div className="footer-links">
           <Link to="/play/gridshot">Arena</Link>

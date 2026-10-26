@@ -73,6 +73,7 @@ export const api = {
   googleUrl: () => `${BASE}/auth/google`,
   submitScore: (game, { score, variant, gameData }) =>
     request(`/games/${game}`, { method: 'POST', body: { score, variant, gameData } }),
+  history: (limit = 100) => request(`/games/history?limit=${limit}`),
   leaderboard: (game, variant) =>
     request(`/games/${game}/leaderboard${variant ? `?variant=${encodeURIComponent(variant)}` : ''}`),
   updateProfile: (fields) => request('/users/profile', { method: 'PUT', body: fields }),
