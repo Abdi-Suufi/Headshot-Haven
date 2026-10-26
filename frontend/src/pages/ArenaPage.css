@@ -209,6 +209,30 @@
   text-align: center;
 }
 
+.fps-counter {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  z-index: 6;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+.fps-counter b {
+  color: var(--good);
+  font-size: 13px;
+}
+
+.fps-counter span {
+  margin-left: 6px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
 /* ---------- results ---------- */
 
 .arena-results {

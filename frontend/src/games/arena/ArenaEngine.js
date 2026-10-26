@@ -44,6 +44,7 @@ export class ArenaEngine {
     this.lockSupported = null; // unknown until the first lock attempt resolves
     this.pendingLock = null;
     this.lastHud = 0;
+    this.nextFrameAt = 0;
     this.raycaster = new THREE.Raycaster();
 
     this.initRenderer();
@@ -62,7 +63,14 @@ export class ArenaEngine {
     this.bindEvents();
     this.resize();
     this.lastFrame = performance.now();
-    this.raf = requestAnimationFrame(this.frame);
+    this.channel = new MessageChannel();
+    this.channel.port1.onmessage = this.frame;
+    // The desktop app can run with VSync off; it reports that through its bridge.
+    this.uncapped = false;
+    window.headshotDesktop?.getFrameRateUnlocked().then(({ active }) => {
+      this.uncapped = active;
+    });
+    this.scheduleFrame();
   }
 
   // ---------------------------------------------------------------- setup
@@ -293,6 +301,7 @@ export class ArenaEngine {
   applySettings(settings) {
     const prev = this.settings;
     this.settings = settings;
+    if (prev.fpsLimit !== settings.fpsLimit) this.nextFrameAt = 0;
     const high = settings.quality !== 'low';
     this.renderer.setPixelRatio(high ? Math.min(window.devicePixelRatio, 2) : 1);
     if (this.renderer.shadowMap.enabled !== high) {
@@ -651,8 +660,41 @@ export class ArenaEngine {
 
   // ---------------------------------------------------------------- loop
 
-  frame = (now) => {
-    this.raf = requestAnimationFrame(this.frame);
+  /**
+   * Queues the next frame. Normally that's requestAnimationFrame (paced by the monitor). When the
+   * desktop app has VSync off *and* a frame limit is set, frames are paced with timers instead:
+   * Chromium slows its frame callbacks right down whenever one skips drawing, which would make
+   * the limiter undershoot badly.
+   */
+  scheduleFrame() {
+    if (this.disposed) return;
+    if (this.uncapped && this.settings.fpsLimit > 0) {
+      const wait = this.nextFrameAt - performance.now();
+      // Sleep coarsely, then finish with an unclamped message-channel hop for precision.
+      if (wait > 4) this.timer = setTimeout(this.frame, wait - 3);
+      else this.channel.port2.postMessage(0);
+    } else {
+      this.raf = requestAnimationFrame(this.frame);
+    }
+  }
+
+  frame = () => {
+    // Read the clock directly: with VSync off, the timestamp passed to requestAnimationFrame
+    // isn't precise enough to pace frames by.
+    const now = performance.now();
+    // Frame rate limit: skip this screen refresh if the next frame isn't due yet. The schedule
+    // advances by a fixed step, so the average lands on the limit even when it doesn't divide
+    // evenly into the monitor's refresh rate (e.g. 60 FPS on a 144 Hz screen).
+    const limit = this.settings.fpsLimit;
+    if (limit > 0) {
+      if (now < this.nextFrameAt - (this.uncapped ? 0.1 : 1)) {
+        this.scheduleFrame();
+        return;
+      }
+      this.nextFrameAt = Math.max(this.nextFrameAt + 1000 / limit, now);
+    }
+    this.scheduleFrame();
+    this.trackPerf(now);
     const dt = Math.min((now - this.lastFrame) / 1000, 0.05);
     this.lastFrame = now;
     this.time += dt;
@@ -697,8 +739,23 @@ export class ArenaEngine {
     if (this.state === 'playing' || this.state === 'countdown') this.emitHud();
   };
 
+  /** Counts rendered frames and reports FPS and average frame time twice a second. */
+  trackPerf(now) {
+    this.perfFrames = (this.perfFrames || 0) + 1;
+    if (!this.perfStart) this.perfStart = now;
+    const span = now - this.perfStart;
+    if (span >= 500) {
+      this.emit({ type: 'perf', fps: Math.round((this.perfFrames * 1000) / span), frameMs: Math.round((span / this.perfFrames) * 10) / 10 });
+      this.perfFrames = 0;
+      this.perfStart = now;
+    }
+  }
+
   dispose() {
+    this.disposed = true;
     cancelAnimationFrame(this.raf);
+    clearTimeout(this.timer);
+    this.channel.port1.close();
     clearTimeout(this.lockTimer);
     this.resizeObserver.disconnect();
     document.removeEventListener('mousemove', this.onMouseMove);

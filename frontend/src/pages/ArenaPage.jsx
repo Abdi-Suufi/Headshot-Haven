@@ -51,6 +51,7 @@ function Arena({ mode }) {
   const [hitFx, setHitFx] = useState({ key: 0, points: 0 });
   const [fullscreen, setFullscreen] = useState(false);
   const [webglError, setWebglError] = useState(null);
+  const [perf, setPerf] = useState(null);
 
   const recorder = useRunRecorder();
   const recordRef = useRef(recorder.record);
@@ -85,6 +86,9 @@ function Arena({ mode }) {
           break;
         case 'input':
           setCursor(e.cursor);
+          break;
+        case 'perf':
+          setPerf({ fps: e.fps, frameMs: e.frameMs });
           break;
         case 'lockError':
           setNotice(e.message);
@@ -192,6 +196,12 @@ function Arena({ mode }) {
       )}
 
       {notice && state !== 'paused' && <div className="arena-toast fade-up">{notice}</div>}
+
+      {settings.showFps && perf && (
+        <div className="fps-counter mono" aria-hidden="true">
+          <b>{perf.fps}</b> FPS <span>{perf.frameMs} ms</span>
+        </div>
+      )}
 
       {state === 'countdown' && hud.countdown > 0 && (
         <div className="arena-countdown" key={hud.countdown}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DEFAULT_SETTINGS, useSettings } from '../contexts/SettingsContext';
 import { sound } from '../lib/audio';
@@ -15,6 +15,25 @@ const CROSSHAIR_PRESETS = [
   { name: 'Classic', config: { color: '#ffff00', length: 8, thickness: 2, gap: 4, dot: false, outline: false, lines: true } },
   { name: 'Pink + dot', config: { color: '#ff4fd8', length: 5, thickness: 2, gap: 3, dot: true, outline: true, lines: true } },
 ];
+
+const FPS_LIMITS = [0, 30, 60, 120, 144, 165, 240, 360];
+
+// Present only inside the desktop app (exposed by electron/preload.cjs).
+const desktop = typeof window !== 'undefined' ? window.headshotDesktop : undefined;
+
+/** Desktop-only "unlock frame rate" switch. Turning VSync off needs an app restart. */
+function useFrameRateUnlock() {
+  const [state, setState] = useState({ unlocked: false, pending: false, loaded: false });
+  useEffect(() => {
+    if (!desktop) return;
+    desktop.getFrameRateUnlocked().then(({ unlocked, active }) => setState({ unlocked, pending: unlocked !== active, loaded: true }));
+  }, []);
+  const set = async (unlocked) => {
+    const { active } = await desktop.setFrameRateUnlocked(unlocked);
+    setState({ unlocked, pending: unlocked !== active, loaded: true });
+  };
+  return [state, set];
+}
 
 const COLOR_SWATCHES = ['#3dffa2', '#00ffff', '#ffffff', '#ffff00', '#ff4fd8', '#ff4d5e'];
 const TARGET_SWATCHES = ['#ff6b35', '#ff4d5e', '#3dffa2', '#5cc8ff', '#ffd166', '#c77dff'];
@@ -80,6 +99,7 @@ export default function Settings() {
   const setCh = (patch) => update({ crosshair: patch });
   const history = useHistory();
   const [confirmClear, setConfirmClear] = useState(false);
+  const [unlock, setUnlock] = useFrameRateUnlock();
 
   return (
     <main className="page">
@@ -184,7 +204,53 @@ export default function Settings() {
                 checked={settings.showWeapon}
                 onChange={(showWeapon) => update({ showWeapon })}
               />
+              <Toggle
+                label="Show FPS counter"
+                hint="Frames per second and frame time, in the corner of the arena."
+                checked={settings.showFps}
+                onChange={(showFps) => update({ showFps })}
+              />
             </div>
+            <div className="field">
+              <label htmlFor="fps-limit">Frame rate limit</label>
+              <select
+                id="fps-limit"
+                className="select"
+                value={settings.fpsLimit}
+                onChange={(e) => update({ fpsLimit: Number(e.target.value) })}
+              >
+                {FPS_LIMITS.map((v) => (
+                  <option key={v} value={v}>
+                    {v === 0 ? (desktop && unlock.unlocked && !unlock.pending ? 'No limit (uncapped)' : 'No limit (monitor refresh rate)') : `${v} FPS`}
+                  </option>
+                ))}
+              </select>
+              <span className="settings-note">
+                {desktop
+                  ? unlock.unlocked
+                    ? 'Frame rate is unlocked, so limits above your monitor’s refresh rate take effect.'
+                    : 'Without unlocking, the game can’t run faster than your monitor’s refresh rate.'
+                  : 'Browsers can’t run faster than your monitor’s refresh rate. The desktop app can.'}
+              </span>
+            </div>
+            {desktop && unlock.loaded && (
+              <div className="settings-toggles">
+                <Toggle
+                  label="Unlock frame rate"
+                  hint="Turns off VSync so the game can run above your monitor’s refresh rate for lower input lag, like a real shooter. May cause screen tearing."
+                  checked={unlock.unlocked}
+                  onChange={setUnlock}
+                />
+                {unlock.pending && (
+                  <div className="toggle-row restart-row">
+                    <div className="toggle-hint">Restart the app to apply this change.</div>
+                    <button type="button" className="btn btn-sm btn-primary" onClick={() => desktop.relaunch()}>
+                      Restart now
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
 
           <section className="card settings-card">

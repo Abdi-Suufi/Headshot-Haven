@@ -13,6 +13,8 @@ export const DEFAULT_SETTINGS = {
   inputMode: 'lock', // 'lock' = FPS pointer lock, 'cursor' = aim with a free cursor (trackpads, touch)
   volume: 0.5,
   showWeapon: true,
+  showFps: false,
+  fpsLimit: 0, // 0 = no limit (the monitor's refresh rate, or uncapped in the desktop app)
   quality: 'high', // 'high' | 'low'
   targetColor: '#ff6b35',
   crosshair: {

@@ -179,6 +179,15 @@
   height: 100%;
 }
 
+.settings-note {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.restart-row {
+  cursor: default;
+}
+
 .danger-zone {
   display: flex;
   align-items: center;
