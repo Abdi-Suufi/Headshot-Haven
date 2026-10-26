@@ -1,0 +1,66 @@
+.chart {
+  position: relative;
+  width: 100%;
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart-axis {
+  fill: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.chart-ref {
+  stroke: var(--text-2);
+  stroke-dasharray: 4 4;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.6;
+}
+
+.chart-ref-label {
+  fill: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.chart-cursor {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart-tip {
+  position: absolute;
+  top: -6px;
+  transform: translate(-50%, -100%);
+  background: var(--surface-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  pointer-events: none;
+  display: flex;
+  gap: 8px;
+}
+
+.chart-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 30px 0;
+  font-size: 14px;
+}

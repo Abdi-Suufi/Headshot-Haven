@@ -1,10 +1,18 @@
 {
-  "dependencies": {
-    "express": "^4.19.2",
-    "moment": "^2.30.1",
-    "mysql": "^2.18.1"
-  },
+  "name": "headshot-haven",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Browser FPS aim trainer: 3D Three.js arena, reaction and CPS tests, MERN leaderboards.",
   "scripts": {
-    "build": "mkdir dist && cp -r *.php dist/ && cp -r assets dist/ && cp -r style.css dist/"
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "build": "npm run build --prefix frontend",
+    "test": "npm test --prefix frontend && npm test --prefix backend",
+    "seed": "npm run seed --prefix backend"
+  },
+  "author": "Abdi Rahman Suufi",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.5"
   }
 }

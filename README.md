@@ -1,127 +1,74 @@
-# <a href="https://headshot-haven.co.uk" target="_blank">Headshot Haven</a>
+# Headshot Haven
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [Contact](#contact)
+**Train your aim in your browser.** No downloads, no sign-up needed. Open the site and play.
 
-## Overview
-Headshot Haven is a web application designed to help users improve their aiming skills through various interactive games and tools. The platform includes features like aim training, CPS (Clicks Per Second) tests, leaderboards, and more.
+Headshot Haven is an aim trainer for people who play first-person shooters like Valorant, CS2, Overwatch or Fortnite. It helps you get faster and more accurate, and shows you how you're improving over time.
 
-## Features
-- Aim Training Game
-- CPS Game
-- Reaction Speed Game
-- Weapon Specifications
-- Roulette Game
-- User Authentication (Sign Up/Sign In)
-- Admin Panel for managing users and scores
+---
 
-## Technologies Used 
-- **Frontend:**
-  - HTML
-  - CSS (Bootstrap)
-  - JavaScript
-- **Backend:**
-  - PHP
-  - MySQL/PHPmyAdmin
-  - Node.js
-- **Other:**
-  - Apache (Web Server)
+## What you can play
 
-## Installation
-To set up the project locally, follow these steps:
+### 🎯 The 3D Arena
+You stand in a 3D training room, holding a weapon, and shoot targets just like in a real game.
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/Abdi-Suufi/Headshot-Haven.git
-    ```
-2. **Navigate to the project directory:**
-    ```bash
-    cd headshot-haven
-    ```
-3. **Set up the database:**
-    - Import the provided SQL script (`database.sql`) into your MySQL database.
-    - Update the database connection details in `database.php` if needed.
+- **Gridshot**: three targets float in front of you. Hit one and another appears. Keep hitting without missing to build a streak and earn more points.
+- **Spidershot**: targets jump between the centre and far out to the sides. The faster you hit them, the bigger your bonus.
+- **Strafe Track**: a target dodges left and right. Keep your crosshair on it for as long as you can.
 
-4. **Start the server:**
-    - Ensure you have PHP and Apache installed. You can use Laragon, XAMPP or even get extension if you're using VSC. Paste 'brapifra.phpserver' into VSC extensions and it should allow you to serve your project a server.
-    - If you are using Laragon or XAMPP, place the project folder in your Apache server's root directory. h2docs for XAMPP and WWW for Laragon.
-    - Start the Apache server.
+Each round lasts under a minute. Afterwards you see your score, your accuracy and a chart of how you did second by second.
 
-## Usage
-1. **Access the application:**
-   Open your web browser and navigate to `http://localhost:3000/index.php`. Make sure you're using the right port. Usually 3000 8080 or 5500.
+### ⚡ Reaction Time
+Wait for the screen to turn green, then click as fast as you can. Do it five times and get your average, plus a rough idea of how you compare to other people. Click too early and you'll have to try again!
 
-2. **Sign up or log in:**
-   - Create a new user account or log in with existing credentials.
-   - For admin, login with username: admin and password: admin and make sure to tick the admin box.
+### 🖱️ CPS Test
+How many times can you click in 5 or 10 seconds? Find out your clicks per second and see how fast you peaked.
 
-3. **Use the features:**
-   - Navigate through the application using the navigation bar.
-   - Play the aim training games, check the leaderboards, and explore other features.
+---
 
-## Screenshots
-### Header Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/01741025-005f-44f2-b7c2-624bbeeeb152)
+## Why it's useful
 
-### Aim-training Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/eae04a5c-349d-469e-a530-a37a8fe2e8ec)
+- **Feels like your real game.** Type in the mouse sensitivity you use in your favourite game and the trainer turns exactly the same amount, so your practice carries straight over.
+- **Make it yours.** Design your own crosshair, change the target colour, and adjust your field of view.
+- **See yourself improve.** Every round is saved, so you can track your personal bests and progress charts over time.
+- **Compete.** Create a free account to put your best scores on the global leaderboards.
+- **Works anywhere.** Play on a laptop, desktop or even your phone. Your progress is saved on your device even without an account.
 
-### Aim-training Leaderboard Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/756c66f5-ddb0-4fdb-8a9e-8b8dcc5a5060)
+---
 
-### Cps Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/368b6a6c-9e7b-4e3d-b217-5e81979edf2e)
+## How to play
 
-### Cps leaderboard Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/9992272a-9a09-43a9-9540-e86958a81837)
+1. Pick a game from the home page.
+2. Press **Start** (or the Space bar).
+3. In the 3D arena, your mouse controls where you look and clicking shoots.
+4. Press **Esc** to pause or **R** to restart instantly.
 
-### Reaction Speed Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/026e6d50-7da4-43da-afe6-55ac82566b4f)
+**Tip:** head to **Settings** first and enter your in-game sensitivity so it feels just like the game you play.
 
-### Reaction Leaderboard:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/2ddafa34-1d63-4333-a396-e7767c6a7655)
+---
 
-### Weapon Specification Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/33ace2f1-97a3-4f0a-8300-3618f19ce9f2)
+## Running it on your own computer
 
-### Roulette Section:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/12c87ba3-e607-4426-80b3-0d3addfce43d)
+You'll need [Node.js](https://nodejs.org) installed. Then, in this folder, run:
 
-### Signin Page:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/39c43a14-871a-43a5-ba92-c02fd92d763b)
+```bash
+npm run install:all
+npm run dev
+```
 
-### Signup Page:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/17dbca5e-c539-4f1f-8b8c-654ce402bd6a)
+Open **http://localhost:3000** in your browser and start playing.
 
-### Admin Page:
-![image](https://github.com/Abdi-Suufi/Headshot-Haven/assets/93520190/5f951787-72bb-4830-82e3-5804d323b2d0)
+Accounts and leaderboards also need a free MongoDB database. To set that up, copy `backend/.env.example` to `backend/.env` and fill it in.
 
-## Contributing
-If you would like to contribute to this project, please follow these steps:
+---
 
-1. **Fork the repository.**
-2. **Create a new branch:**
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-3. **Make your changes and commit them:**
-    ```bash
-    git commit -m 'Add some feature'
-    ```
-4. **Push to the branch:**
-    ```bash
-    git push origin feature/your-feature-name
-    ```
-5. **Create a pull request.**
+## Built with
 
-## Contact
-- **Name:** Abdi Rahman Suufi
-- **Email:** abdisuufi123@gmail.com
-- **GitHub:** [Abdi-Suufi](https://github.com/Abdi-Suufi)
+React and Three.js for the website and 3D graphics, plus Node.js, Express and MongoDB for accounts and leaderboards.
+
+---
+
+## Made by
+
+**Abdi Rahman Suufi** · [GitHub](https://github.com/Abdi-Suufi) · abdisuufi123@gmail.com
+
+This is a complete rebuild of the original PHP version of Headshot Haven, which is still in this repository's history.

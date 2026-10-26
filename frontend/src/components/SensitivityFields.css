@@ -1,0 +1,33 @@
+.sens-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sens-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.sens-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.sens-readout > div {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sens-readout > div:first-child {
+  border-color: rgba(255, 107, 53, 0.4);
+  background: var(--accent-soft);
+}
+
