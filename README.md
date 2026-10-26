@@ -1,8 +1,9 @@
-# Headshot Haven
+# [Headshot Haven](https://frontend-three-coral-87.vercel.app)
 
 **Train your aim in your browser.** No downloads, no sign-up needed. Open the site and play.
 
-### ▶️ [Play now at frontend-three-coral-87.vercel.app](https://frontend-three-coral-87.vercel.app)
+https://github.com/user-attachments/assets/c24cac7a-b336-4b20-b1ce-cdcdea325e28
+
 
 Headshot Haven is an aim trainer for people who play first-person shooters like Valorant, CS2, Overwatch or Fortnite. It helps you get faster and more accurate, and shows you how you're improving over time.
 
